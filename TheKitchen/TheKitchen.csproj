@@ -6,7 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DataFiles\" />
+    <PackageReference Include="UnitsNet" Version="4.128.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataFiles\Items.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

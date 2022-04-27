@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TheKitchen
 {
-    class Engine
+    public class Engine
     {
         private List<Item> Items;
 

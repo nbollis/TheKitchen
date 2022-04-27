@@ -11,26 +11,13 @@ namespace TheKitchen
     public abstract class Item
     {
         protected readonly string Name;
-        protected readonly List<string> Unit; 
-        protected readonly List<double> Quantity;
-        protected readonly string ExpirationDate;
+        protected List<string> Unit; 
+        protected List<double> Quantity;
 
-        public Item(string name, double quantity, string unit, string expirationDate = "none")
+        public Item(string name)
         {
             Name = name;
-            ExpirationDate = expirationDate;
-            if (Unit == null)
-            {
-                Quantity = new();
-                Unit = new();
-                Quantity.Add(quantity);
-                Unit.Add(unit);
-            }
-            else
-            {
-                Quantity.Add(quantity);
-                Unit.Add(unit);
-            }
+            this.InitializeLists();
         }
 
         public static void FindCheapest(int items = 1)
@@ -55,6 +42,12 @@ namespace TheKitchen
                 }
             }
             return output;
+        }
+
+        private void InitializeLists()
+        {
+            Quantity = new List<double>();
+            Unit = new List<string>();
         }
     }
 }
