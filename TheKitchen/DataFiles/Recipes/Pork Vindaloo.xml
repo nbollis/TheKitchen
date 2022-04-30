@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Recipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Pork Vindaloo</Name>
+  <Serves>4</Serves>
+  <Procedure>
+    <string>Soak chilies, ginger, and garlic with vinegar and 1/2 tsp salt for 20 min</string>
+    <string>Heat a frying pan over high heat. Add cloves, cumin seeds, cinnamon, and pepper. Dry toast for 40 seconds, then add to the soaking chilies. </string>
+    <string>Add this mixture and the onions to a blender to create a puree. This mixture is known as vindaloo masala</string>
+    <string>Heat the oil in a heavy saucepan over high heat and fry the p ort for 3-4 minutes to seal. Add the vindaloo masala. </string>
+    <string>Rinse the blender with a bit of water and add to the pork</string>
+    <string>Bring to a boil then reduce heat to medium and cook for 40 minutes, until pork is tender. </string>
+    <string>Serve over rice</string>
+    <string>Source: Indian Cookery Course</string>
+  </Procedure>
+  <Notes>
+    <string>Used 10 peppers and only confident to have removed about 80% of seeds, too spicy. Knock it down to 6 on the next run. Flavor is great when spice is not overpowering it</string>
+  </Notes>
+  <Ingredients>
+    <Ingredient>
+      <Name>or ~1.8 pound pork</Name>
+      <UnitString>g</UnitString>
+      <Amount>800</Amount>
+      <How> cubed</How>
+      <WholeLine>800 g or ~1.8 pound pork, cubed</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>dried red Kashmiri chilies (6-7 for milder curry)</Name>
+      <UnitString />
+      <Amount>15</Amount>
+      <How> broken in half and deseeded</How>
+      <WholeLine>15 blank dried red Kashmiri chilies (6-7 for milder curry), broken in half and deseeded</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>onions</Name>
+      <UnitString />
+      <Amount>2</Amount>
+      <How> sliced</How>
+      <WholeLine>2 blank onions, sliced</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>rice</Name>
+      <UnitString>cup</UnitString>
+      <Amount>1</Amount>
+      <How> dry</How>
+      <WholeLine>1 cup rice, dry</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>coconut or white vinegar</Name>
+      <UnitString>tbls</UnitString>
+      <Amount>3</Amount>
+      <How />
+      <WholeLine>3 tbls coconut or white vinegar</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>vegetable oil</Name>
+      <UnitString>tbls</UnitString>
+      <Amount>2</Amount>
+      <How />
+      <WholeLine>2 tbls vegetable oil</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>garlic</Name>
+      <UnitString>cloves</UnitString>
+      <Amount>5</Amount>
+      <How> chopped</How>
+      <WholeLine>5 cloves garlic, chopped</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>piece fresh ginger</Name>
+      <UnitString>cm</UnitString>
+      <Amount>0</Amount>
+      <How> scraped and chopped</How>
+      <WholeLine>2.5 cm piece fresh ginger, scraped and chopped</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name />
+      <UnitString>cloves</UnitString>
+      <Amount>3</Amount>
+      <How />
+      <WholeLine>3 cloves</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>cumin seeds</Name>
+      <UnitString>tsp</UnitString>
+      <Amount>2</Amount>
+      <How />
+      <WholeLine>2 tsp cumin seeds</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>small cinnamon stick</Name>
+      <UnitString />
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 blank small cinnamon stick</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>fresh black pepper</Name>
+      <UnitString>tsp</UnitString>
+      <Amount>0</Amount>
+      <How />
+      <WholeLine>1/2 tsp fresh black pepper</WholeLine>
+    </Ingredient>
+  </Ingredients>
+  <CookInstances />
+  <Description />
+  <Changed>true</Changed>
+</Recipe>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Recipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Xacuti</Name>
+  <Serves>4</Serves>
+  <Procedure>
+    <string>Heat half the oil in a frying pan over a high heat and add all the ingredients from the cinnamon to the poppy seeds. As soon as they start to sizzle, tip in the onions and fry for 7-8 minutes until very soft and golden, then add the ginger and garlic and fry for a minute or so. </string>
+    <string>Stir in the coconut and fry until toasted and brown, stirring continuously to prevent it from scorching. Tip this mixture into a blender and add enough water to just cover it. Blitz to a fine puree and set aside.</string>
+    <string>Heat the remaining oil in the same frying pan (after giving it a wipe) over a high heat, add the chicken pieces and fry until sealed and light brown. Sprinkle in salt to season and the turmeric and cook for a minute or so, then pour in the pur�e from the blender and rinse the blender out with a little water. Pour this in as well. Add the tomatoes, bring to the boil then reduce the heat and simmer for 15-20 minutes or until the chicken is cooked through. Season to taste and serve hot with a few shavings of nutmeg.</string>
+  </Procedure>
+  <Notes>
+    <string>Serves 4</string>
+  </Notes>
+  <Ingredients>
+    <Ingredient>
+      <Name>vegetable oil</Name>
+      <UnitString>tablespoons</UnitString>
+      <Amount>2</Amount>
+      <How />
+      <WholeLine>2 tablespoons vegetable oil </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>small cinnamon stick</Name>
+      <UnitString />
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 blank small cinnamon stick </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>black peppercorns</Name>
+      <UnitString />
+      <Amount>10</Amount>
+      <How />
+      <WholeLine>10 blank black peppercorns </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>dried red Kashmiri chillies</Name>
+      <UnitString />
+      <Amount>5</Amount>
+      <How> broken in half and seeds shaken out </How>
+      <WholeLine>5 blank dried red Kashmiri chillies, broken in half and seeds shaken out </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>coriander seeds</Name>
+      <UnitString>tablespoon</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 tablespoon coriander seeds </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>fennel seeds</Name>
+      <UnitString>teaspoon</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 teaspoon fennel seeds </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>white poppy seeds</Name>
+      <UnitString>teaspoon</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 teaspoon white poppy seeds</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>onions</Name>
+      <UnitString />
+      <Amount>2</Amount>
+      <How> sliced </How>
+      <WholeLine>2 blank onions, sliced </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>piece fresh root ginger</Name>
+      <UnitString>cm</UnitString>
+      <Amount>0</Amount>
+      <How> scraped and chopped </How>
+      <WholeLine>2.5 cm piece fresh root ginger, scraped and chopped </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>garlic</Name>
+      <UnitString>cloves</UnitString>
+      <Amount>7</Amount>
+      <How> chopped </How>
+      <WholeLine>7 cloves garlic, chopped </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>fresh grated coconut</Name>
+      <UnitString>tablespoons</UnitString>
+      <Amount>4</Amount>
+      <How> or desiccated coconut soaked for 20 minutes in warm water </How>
+      <WholeLine>4 tablespoons fresh grated coconut, or desiccated coconut soaked for 20 minutes in warm water </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>chicken legs</Name>
+      <UnitString>g</UnitString>
+      <Amount>800</Amount>
+      <How> skinned and halved at the joint </How>
+      <WholeLine>800 g chicken legs, skinned and halved at the joint </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>ground turmeric</Name>
+      <UnitString>teaspoon</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 teaspoon ground turmeric </WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>tomatoes</Name>
+      <UnitString />
+      <Amount>3</Amount>
+      <How> finely chopped</How>
+      <WholeLine>3 blank tomatoes, finely chopped</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>Salt</Name>
+      <UnitString />
+      <Amount>0</Amount>
+      <How> to taste</How>
+      <WholeLine>blank blank Salt, to taste</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>nutmeg</Name>
+      <UnitString>FewShavings</UnitString>
+      <Amount>0</Amount>
+      <How> to serve</How>
+      <WholeLine>blank FewShavings nutmeg, to serve</WholeLine>
+    </Ingredient>
+  </Ingredients>
+  <CookInstances />
+  <Description>Pronounced 'shakooti', this Portuguese-inspired curry is also called 'sagoti', and can be made with prawns or meat. It is a thick curry madeas hot or mild as the cook likes it, and is a part of the local Christian cuisine all over Goa</Description>
+  <Changed>true</Changed>
+</Recipe>

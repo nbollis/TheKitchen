@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Recipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Josh Rogan</Name>
+  <Serves>4</Serves>
+  <Procedure>
+    <string>Heat half the oil over high heat and add the cloves, cinnamon sticks, cardamom seeds, and mace. Fry for a couple of minutes until aromatic </string>
+    <string>Add the onions and fry over medium heat for 10-12 minute until onions are golden and soft</string>
+    <string>Add the ginger garlic paste and fry for a minute</string>
+    <string>Add the tomato puree, stir a few times, and remove from heat</string>
+    <string>Transfer to a blender with a few tbls of water and blitz until smooth. Set aside</string>
+    <string>Heat remaining oil in pan over high heat, add bay leaves and fry for 30 seconds</string>
+    <string>Add the lamb, reduce heat to medium and fry until brown. Add  ground spices and cook for a couple of minutes.</string>
+    <string>Add the curry paste and enough water to make a thick sauce. Season with salt and bring to a boil. Reduce the heat, cover and simmer for 90 minutes or until meat is tender. </string>
+    <string>Fold in the ground almonds and yogurt and remove from heat. </string>
+    <string>Serve over rice</string>
+  </Procedure>
+  <Notes>
+    <string>Serves 4</string>
+  </Notes>
+  <Ingredients>
+    <Ingredient>
+      <Name>vegetable oil</Name>
+      <UnitString>tbls</UnitString>
+      <Amount>4</Amount>
+      <How />
+      <WholeLine>4 tbls vegetable oil</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>cloves</Name>
+      <UnitString />
+      <Amount>4</Amount>
+      <How />
+      <WholeLine>4 blank cloves</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>small cinnamon sticks</Name>
+      <UnitString />
+      <Amount>2</Amount>
+      <How />
+      <WholeLine>2 blank small cinnamon sticks</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>large black cardamom pods</Name>
+      <UnitString />
+      <Amount>2</Amount>
+      <How> seeds crushed and husks discarded</How>
+      <WholeLine>2 blank large black cardamom pods, seeds crushed and husks discarded</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>green cardamom pods</Name>
+      <UnitString />
+      <Amount>4</Amount>
+      <How> seeds crushed and husks discarded</How>
+      <WholeLine>4 blank green cardamom pods, seeds crushed and husks discarded</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>blade of mace</Name>
+      <UnitString />
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 blank blade of mace</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>large onions</Name>
+      <UnitString />
+      <Amount>2</Amount>
+      <How> sliced</How>
+      <WholeLine>2 blank large onions, sliced</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>ginger-garlic paste</Name>
+      <UnitString>tsp</UnitString>
+      <Amount>2</Amount>
+      <How />
+      <WholeLine>2 tsp ginger-garlic paste</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>tomato paste</Name>
+      <UnitString>tbls</UnitString>
+      <Amount>2</Amount>
+      <How />
+      <WholeLine>2 tbls tomato paste</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>bay leaves</Name>
+      <UnitString />
+      <Amount>2</Amount>
+      <How />
+      <WholeLine>2 blank bay leaves</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>lamb shoulder on the bone</Name>
+      <UnitString>g</UnitString>
+      <Amount>800</Amount>
+      <How> cubed</How>
+      <WholeLine>800 g lamb shoulder on the bone, cubed</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>ground fennel seeds</Name>
+      <UnitString>tsp</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 tsp ground fennel seeds</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>ground coriander</Name>
+      <UnitString>tsp</UnitString>
+      <Amount>2</Amount>
+      <How />
+      <WholeLine>2 tsp ground coriander</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>Kashmiri chili powder</Name>
+      <UnitString>tsp</UnitString>
+      <Amount>2</Amount>
+      <How />
+      <WholeLine>2 tsp Kashmiri chili powder</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>ground turmeric</Name>
+      <UnitString>tsp</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 tsp ground turmeric</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>ground almonds</Name>
+      <UnitString>tbls</UnitString>
+      <Amount>2</Amount>
+      <How />
+      <WholeLine>2 tbls ground almonds</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>full-fat yogurt</Name>
+      <UnitString>g</UnitString>
+      <Amount>50</Amount>
+      <How />
+      <WholeLine>50 g full-fat yogurt</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>Salt</Name>
+      <UnitString />
+      <Amount>0</Amount>
+      <How> to taste</How>
+      <WholeLine>blank blank Salt, to taste</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>dry rice</Name>
+      <UnitString>cup</UnitString>
+      <Amount>1</Amount>
+      <How> boiled</How>
+      <WholeLine>1 cup dry rice, boiled</WholeLine>
+    </Ingredient>
+  </Ingredients>
+  <CookInstances />
+  <Description />
+  <Changed>true</Changed>
+</Recipe>

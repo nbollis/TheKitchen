@@ -11,23 +11,16 @@ namespace TheKitchen
     public class Engine
     {
         private List<Item> Items;
+        protected List<Recipe> Recipes;
 
-        public void PrintItems()
+        public void SaveAll()
         {
-            string filepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"DataFiles/Items.txt");
-            using (StreamWriter output = new StreamWriter(filepath))
-            {
-                foreach (var item in Items)
-                {
-                    output.WriteLine(item.ToString());
-                }
-            }
+            Recipe.SaveRecipe(Recipes);
         }
 
-        public void ReadItems()
+        public void LoadAll()
         {
-            string filepath = "";
-            string[] lines = System.IO.File.ReadAllLines(filepath);
+            Recipes = Recipe.LoadRecipes();
         }
     }
 }

@@ -10,10 +10,47 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="DataFiles\Items.txt">
+    <Folder Include="DataFiles\Recipes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataFiles\Recipes\Chicken Chettinad.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="DataFiles\Recipes.txt">
+    <None Update="DataFiles\Recipes\Chicken Fajita Pasta.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Josh Rogan.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Kolhapuri Tambda Rassa.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Kosha Mangsho.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Laal Maas.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Murgh Ka Korma.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Murgh Makhani %28Buttery Chicken%29.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Pork Vindaloo.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Roasted Vegetable Couscous Salad.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Saag Gosht.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Shari Korma.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\Xacuti.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

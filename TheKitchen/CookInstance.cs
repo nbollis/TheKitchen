@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheKitchen
 {
-    internal class CookInstance
+    public class CookInstance
     {
         public DateTime dateCooked;
         public string Notes;
@@ -16,6 +16,11 @@ namespace TheKitchen
             string[] list = notes.Split(':');
             dateCooked = DateTime.Parse(list[0]);
             Notes = list[1].Trim();
+        }
+        
+        public CookInstance()
+        {
+
         }
     }
 }

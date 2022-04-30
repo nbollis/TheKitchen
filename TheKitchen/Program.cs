@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Linq;
 
 namespace TheKitchen
 {
@@ -7,11 +9,9 @@ namespace TheKitchen
     {
         static void Main(string[] args)
         {
-            List<Recipe> recipes = new();
-            recipes.Add(new Recipe(@"A:\Downloads\RecipesToConvert\Kolhapuri Tambda Rassa.txt"));
-            recipes.Add(new Recipe(@"A:\Downloads\RecipesToConvert\Xacuti.txt"));
-            recipes.Add(new Recipe(@"A:\Downloads\RecipesToConvert\Chicken Fajita Pasta.txt"));
-
+            Engine engine = new Engine();
+            engine.LoadAll();
+            engine.SaveAll();
 
 
             int breakpoint = 0;

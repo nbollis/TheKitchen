@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Recipe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Chicken Fajita Pasta</Name>
+  <Serves>4</Serves>
+  <Procedure>
+    <string>Heat oil in a large pot over high heat</string>
+    <string>Add chicken and cook until no pink is visible, about 5-6 minutes, then take the chicken out.</string>
+    <string>Add the bell peppers and onion, cooking until the onion is translucent, about 6 minutes.</string>
+    <string>Add the chicken back to the pot with salt, pepper, chili powder, cumin, and garlic powder, stirring until evenly coated, about 30 seconds.</string>
+    <string>Add the milk and the penne, stirring constantly to prevent any pasta from sticking.</string>
+    <string>Cook for about 20 minutes until pasta is cooked and the milk has reduced to a thick sauce that coats the pasta.</string>
+    <string>Add the cheese and mix until melted.</string>
+  </Procedure>
+  <Notes>
+    <string>Serves 4</string>
+  </Notes>
+  <Ingredients>
+    <Ingredient>
+      <Name>oil</Name>
+      <UnitString>tablespoons</UnitString>
+      <Amount>3</Amount>
+      <How />
+      <WholeLine>3 tablespoons oil</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>chicken breasts</Name>
+      <UnitString />
+      <Amount>3</Amount>
+      <How> sliced</How>
+      <WholeLine>3 blank chicken breasts, sliced</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>red bell pepper</Name>
+      <UnitString />
+      <Amount>2</Amount>
+      <How> sliced</How>
+      <WholeLine>2 blank red bell pepper, sliced</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>green bell pepper</Name>
+      <UnitString />
+      <Amount>2</Amount>
+      <How> sliced</How>
+      <WholeLine>2 blank green bell pepper, sliced</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>yellow bell pepper</Name>
+      <UnitString />
+      <Amount>1</Amount>
+      <How> sliced</How>
+      <WholeLine>1 blank yellow bell pepper, sliced</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>onion</Name>
+      <UnitString />
+      <Amount>1</Amount>
+      <How> sliced</How>
+      <WholeLine>1 blank onion, sliced</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>salt</Name>
+      <UnitString>teaspoon</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 teaspoon salt</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>pepper</Name>
+      <UnitString>teaspoon</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 teaspoon pepper</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>chili powder</Name>
+      <UnitString>tablespoon</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 tablespoon chili powder</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>cumin</Name>
+      <UnitString>tablespoon</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 tablespoon cumin</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>garlic powder</Name>
+      <UnitString>tablespoon</UnitString>
+      <Amount>1</Amount>
+      <How />
+      <WholeLine>1 tablespoon garlic powder</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>milk</Name>
+      <UnitString>cups</UnitString>
+      <Amount>5</Amount>
+      <How />
+      <WholeLine>5 cups milk</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>penne pasta</Name>
+      <UnitString>cups</UnitString>
+      <Amount>4</Amount>
+      <How />
+      <WholeLine>4 cups penne pasta</WholeLine>
+    </Ingredient>
+    <Ingredient>
+      <Name>pepper jack cheese</Name>
+      <UnitString>cup</UnitString>
+      <Amount>1</Amount>
+      <How> shredded</How>
+      <WholeLine>1 cup pepper jack cheese, shredded</WholeLine>
+    </Ingredient>
+  </Ingredients>
+  <CookInstances>
+    <CookInstance>
+      <dateCooked>2022-04-24T00:00:00</dateCooked>
+      <Notes>Turned out pretty good, substituted milk for almond milk and replacing 1/2 cup with heavy cream. Reducing the milk into the sauce took a while, which made me nervous, but the pasta did not end up overcooked.</Notes>
+    </CookInstance>
+  </CookInstances>
+  <Description />
+  <Changed>true</Changed>
+</Recipe>

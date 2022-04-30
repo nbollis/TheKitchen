@@ -7,7 +7,7 @@ using UnitsNet;
 
 namespace TheKitchen
 {
-    internal class Ingredient
+    public class Ingredient 
     {
         public string Name;
         public Enum Unit;
@@ -17,7 +17,12 @@ namespace TheKitchen
         public string Category;
         public string WholeLine;
 
-        Ingredient(string name, double amount, string how, string unit, string ingredientsline = null)
+        public Ingredient()
+        {
+
+        }
+
+        public Ingredient(string name, double amount, string how, string unit, string ingredientsline = null)
         {
             Name = name;
             Amount = amount;

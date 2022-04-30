@@ -15,7 +15,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TestData\" />
+    <ProjectReference Include="..\TheKitchen\TheKitchen.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DataFiles\Recipes\one\Xacuti.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\xml\Chicken Fajita Pasta.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\one\OneChickenFajitaPasta.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\one\OneRoastedVegetableCouscousSalad.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\xml\Roasted Vegetable Couscous Salad.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataFiles\Recipes\xml\Xacuti.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
