@@ -8,6 +8,10 @@ namespace TheKitchen
 {
     class Food : Item
     {
+        // public NutritionData NutritionData;
+        // public CostData CostData;
+        // public InventoryItemData;
+
         public Food(string name, double quantity, string unit) : base(name)
         {
             Quantity.Add(quantity);

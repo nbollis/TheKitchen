@@ -10,8 +10,8 @@ namespace TheKitchen
 {
     public class Engine
     {
-        private List<Item> Items;
-        protected List<Recipe> Recipes;
+        public List<Item> Items;
+        public List<Recipe> Recipes;
 
         public void SaveAll()
         {

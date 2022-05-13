@@ -10,6 +10,7 @@ namespace TheKitchen
     {
         public DateTime dateCooked;
         public string Notes;
+        public double rating;
 
         public CookInstance(string notes)
         {
