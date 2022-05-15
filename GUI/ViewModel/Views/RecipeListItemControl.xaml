@@ -6,41 +6,82 @@
              xmlns:local="clr-namespace:GUI"
              mc:Ignorable="d" 
              d:DesignHeight="60" d:DesignWidth="240">
-    <Grid Background="{StaticResource DataGridBackgroundColor}">
-        <Grid.ColumnDefinitions>
-            <!-- Selected Indicator -->
-            <ColumnDefinition Width="Auto" />
-            <!-- Image of Food -->
-            <ColumnDefinition Width="Auto" />
-            <!-- Name and Tags -->
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <!-- Selected Indicator -->
-        <Border Background="{StaticResource AccentColor}" Width="5" />
-
-        <!-- Image of Food -->
-        <Border Grid.Column="1" Padding="8">
-            <Border Background="{StaticResource AccentColor}"
-                    Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                    CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"/>
-        </Border>
-        
-        <!-- Name and Tags -->
-        <Border Padding="8" Grid.Column="2" >
-            <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Recipe Name" 
-                       FontFamily="{StaticResource LatoRegular}"
-                       TextTrimming="CharacterEllipsis"/>
-
-                <TextBlock Text="Tags" Grid.Column="1"
-                       Foreground="{StaticResource ForegroundDarkBrush}"
-                       FontFamily="{StaticResource LatoRegular}" />
 
 
-            </StackPanel>
-        </Border>
-        
-        
-    </Grid>
+    <UserControl.Resources>
+        <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                        <Border Background="{StaticResource BackgroundLightBrush}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <!-- Selected Indicator -->
+                                    <ColumnDefinition Width="Auto" />
+                                    <!-- Image of Food -->
+                                    <ColumnDefinition Width="Auto" />
+                                    <!-- Name and Tags -->
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Selected Indicator -->
+                                <Border Background="{StaticResource ThistleBrush}" Width="5" />
+
+                                <!-- Image of Food -->
+                                <Border Grid.Column="1" Padding="8">
+                                    <Border Background="{StaticResource CottonCandyBrush}"
+                                        Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                        CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"/>
+                                </Border>
+
+                                <!-- Name and Tags -->
+                                <Border Padding="8" Grid.Column="2" >
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        
+                                        <!-- name -->
+                                        <TextBlock Grid.Row="0"
+                                            Text="{Binding Name}" 
+                                            FontFamily="{StaticResource LatoRegular}"
+                                            TextTrimming="CharacterEllipsis"/>
+
+                                        <!-- tags -->
+                                        <ListBox Grid.Row="1"
+                                                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                                 ScrollViewer.CanContentScroll="False"
+                                                 Background="{StaticResource BackgroundLightBrush}"
+                                                 BorderBrush="{StaticResource BackgroundLightBrush}">
+                                            <ItemsControl ItemsSource="{Binding Tags}" >
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <local:TagControl Margin="0 0 3 0" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <VirtualizingStackPanel Orientation="Horizontal" />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                            </ItemsControl>
+                                        </ListBox>
+
+                                    </Grid>
+
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <ContentControl d:DataContext="{x:Static local:RecipeListItemDesignModel.Instance}"
+                    Style="{StaticResource ContentStyle}">
+    </ContentControl>
+   
 </UserControl>

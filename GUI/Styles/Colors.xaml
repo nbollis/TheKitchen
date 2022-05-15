@@ -2,6 +2,25 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:GUI">
 
+    <!-- my colors -->
+    
+    <!-- recipe palet -->
+    <Color x:Key="Thistle">#e0bbe4</Color>
+    <SolidColorBrush x:Key="ThistleBrush" Color="{StaticResource Thistle}" />
+
+    <Color x:Key="LavenderPurple">#957dad</Color>
+    <SolidColorBrush x:Key="LavenderPurpleBrush" Color="{StaticResource LavenderPurple}" />
+
+    <Color x:Key="PastelViolet">#d291bc</Color>
+    <SolidColorBrush x:Key="PastelVioletBrush" Color="{StaticResource PastelViolet}" />
+
+    <Color x:Key="CottonCandy">#fec8d8</Color>
+    <SolidColorBrush x:Key="CottonCandyBrush" Color="{StaticResource CottonCandy}" />
+
+    <Color x:Key="Lumber">#ffdfd3</Color>
+    <SolidColorBrush x:Key="LumberBrush" Color="{StaticResource Lumber}" />
+
+    <!-- from falseto.word -->
     <Color x:Key="BackgroundLight">#efefef</Color>
     <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
 
@@ -46,16 +65,5 @@
 
     <Color x:Key="WordGreen">#00c541</Color>
     <SolidColorBrush x:Key="WordGreenBrush" Color="{StaticResource WordGreen}" />
-    
-    <SolidColorBrush x:Key="SideBarMainColor" Color="#353b48" />
-    <SolidColorBrush x:Key="AccentColor" Color="#0097e6" />
-    <SolidColorBrush x:Key="SecondaryButtonColor" Color="#2f3640" />
-    <SolidColorBrush x:Key="BackgroundColor" Color="#f5f6fa" />
-    <SolidColorBrush x:Key="DataGridBackgroundColor" Color="#f5f6fa" />
-    <SolidColorBrush x:Key="DataGridHeaderColor" Color="#dcdde1" />
-    <SolidColorBrush x:Key="BorderColor" Color="#2f3640" />
-    <SolidColorBrush x:Key="TextColor1" Color="#2f3640" />
-    <SolidColorBrush x:Key="TextColor2" Color="#f5f6fa" />
-    <SolidColorBrush x:Key="TextColorDelete" Color="#c23616" />
 
 </ResourceDictionary>
