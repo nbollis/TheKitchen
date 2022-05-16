@@ -5,11 +5,11 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheKitchen", "TheKitchen\TheKitchen.csproj", "{0C04BEB4-2EE4-4FEA-952D-EB2A2FD6EBAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{1F9044BF-2915-45D8-9A32-3E15496804F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{1F9044BF-2915-45D8-9A32-3E15496804F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI", "GUi\GUI.csproj", "{9737B50E-AB89-4FB0-8FE9-4F74D9283690}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fork", "GUi\Fork.csproj", "{9737B50E-AB89-4FB0-8FE9-4F74D9283690}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiFunctions", "GuiFunctions\GuiFunctions.csproj", "{04128A4D-7257-495F-A73A-E5B4C071BE34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuiFunctions", "GuiFunctions\GuiFunctions.csproj", "{04128A4D-7257-495F-A73A-E5B4C071BE34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
