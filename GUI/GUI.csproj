@@ -42,7 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GuiFunctions\GuiFunctions.csproj" />
     <ProjectReference Include="..\TheKitchen\TheKitchen.csproj" />
   </ItemGroup>
 

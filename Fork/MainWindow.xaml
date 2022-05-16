@@ -9,7 +9,7 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         x:Name="AppWindow"
-        Icon="C:\Users\nboll\source\repos\TheKitchen\GUi\Images\emojicook.png"
+        Icon="C:\Users\nboll\source\repos\TheKitchen\Fork\Images\emojicook.png"
         MinHeight="{Binding WindowMinimumHeight}"
         MinWidth="{Binding WindowMinimumWidth}"
         Title="MainWindow" Height="450" Width="800">
