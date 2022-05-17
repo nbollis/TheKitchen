@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Fork"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="400">
-    <Grid DataContext="{x:Static local:RecipeListDesignModel.Instance}"
+    <Grid DataContext="{x:Static local:RecipeListModel.Instance}"
           Background="{StaticResource ForegroundLightBrush}">
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Recipes}" >

@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\Models\" />
+    <Folder Include="ViewModel\ViewModels\Design\" />
   </ItemGroup>
 
   <ItemGroup>

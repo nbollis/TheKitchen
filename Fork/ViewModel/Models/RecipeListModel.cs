@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Fork
 {
-    public class RecipeListDesignModel : RecipeListViewModel
+    public class RecipeListModel : RecipeListViewModel
     {
         /// <summary>
         /// Creates an instance of Recipe List Design Model
         /// </summary>
-        public static RecipeListDesignModel Instance => new RecipeListDesignModel();
+        public static RecipeListModel Instance => new RecipeListModel();
 
-        public RecipeListDesignModel()
+        public RecipeListModel() : base()
         {
             Recipes = new List<RecipeListItemViewModel>
             {

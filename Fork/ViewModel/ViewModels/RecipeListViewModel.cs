@@ -11,9 +11,20 @@ namespace Fork
     /// </summary>
     public class RecipeListViewModel : BaseViewModel
     {
+
         /// <summary>
         /// recipe list itesm for the list
         /// </summary>
         public List<RecipeListItemViewModel> Recipes { get; set; }
+
+        #region Constructor
+
+        public RecipeListViewModel()
+        {
+            Recipes = new List<RecipeListItemViewModel>();
+        }
+        #endregion
+
+
     }
 }

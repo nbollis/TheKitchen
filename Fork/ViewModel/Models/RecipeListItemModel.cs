@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Fork
 {
-    public class RecipeListItemDesignModel : RecipeListItemViewModel
+    public class RecipeListItemModel : RecipeListItemViewModel
     {
         /// <summary>
         /// a single instance of the design model
         /// </summary>
-        public static RecipeListItemDesignModel Instance => new RecipeListItemDesignModel();
+        public static RecipeListItemModel Instance => new RecipeListItemModel();
 
-        public RecipeListItemDesignModel() : base()
+        public RecipeListItemModel() : base()
         {
             Name = "Buttery Chicken";
-            Tags.Add(new TagDesignModel());
-            Tags.Add(new TagDesignModel());
-            Tags.Add(new TagDesignModel());
+            Tags.Add(new TagModel());
+            Tags.Add(new TagModel());
+            Tags.Add(new TagModel());
             IsSelected = false;
             NewContentAvailable = false;
         }

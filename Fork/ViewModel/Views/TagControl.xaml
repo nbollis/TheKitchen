@@ -9,7 +9,7 @@
     <Border Padding="5"
             CornerRadius="20"
             Background="{Binding RGB}"
-            d:DataContext="{x:Static local:TagDesignModel.Instance}">
+            d:DataContext="{x:Static local:TagModel.Instance}">
 
         <TextBlock VerticalAlignment="Center" Text="{Binding Tag}"
                    HorizontalAlignment="Center"

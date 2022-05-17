@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Fork
 {
-    public class TagDesignModel : TagViewModel
+    public class TagModel : TagViewModel
     {
         /// <summary>
         /// A single instance of the design model
         /// </summary>
-        public static TagDesignModel Instance => new TagDesignModel();
+        public static TagModel Instance => new TagModel();
 
 
-        public TagDesignModel()
+        public TagModel()
         {
             Random rand = new Random();
 

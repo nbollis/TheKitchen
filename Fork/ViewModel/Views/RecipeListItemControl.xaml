@@ -80,7 +80,7 @@
         </Style>
     </UserControl.Resources>
 
-    <ContentControl d:DataContext="{x:Static local:RecipeListItemDesignModel.Instance}"
+    <ContentControl d:DataContext="{x:Static local:RecipeListItemModel.Instance}"
                     Style="{StaticResource ContentStyle}">
     </ContentControl>
    

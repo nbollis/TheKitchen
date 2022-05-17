@@ -42,7 +42,8 @@ namespace Fork
 
         #endregion
 
-        #region Public Properties
+        
+#region Public Properties
 
         /// <summary>
         /// The smallest width the window can go to
@@ -127,8 +128,12 @@ namespace Fork
         /// </summary>
         public bool DimmableOverlayVisible { get; set; }
 
-        #endregion
+        /// <summary>
+        /// The current page of the applicaiton
+        /// </summary>
+        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Recipe;
 
+        #endregion
         #region Commands
 
         /// <summary>
