@@ -23,6 +23,7 @@ namespace Fork
         public TagControl()
         {
             InitializeComponent();
+            this.DataContext = new TagViewModel();
         }
     }
 }

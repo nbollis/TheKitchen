@@ -14,9 +14,6 @@ namespace Fork
 
             this.DataContext = new WindowViewModel(this);
 
-
-            //RecipeLogic = new RecipeLogic();
-            //RecipesDataGrid.ItemsSource = RecipeLogic.Recipes;
         }
     }
 }

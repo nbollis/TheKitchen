@@ -30,10 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\ViewModels\Design\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Dna.Framework" Version="1.0.7.19" />
     <PackageReference Include="Fody" Version="6.6.1">
       <PrivateAssets>all</PrivateAssets>

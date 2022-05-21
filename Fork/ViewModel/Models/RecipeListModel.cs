@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,14 @@ namespace Fork
         /// </summary>
         public static RecipeListModel Instance => new RecipeListModel();
 
-        public RecipeListModel() : base()
+        public RecipeListModel() 
         {
-            Recipes = new List<RecipeListItemViewModel>
+            RecipeList = new ObservableCollection<RecipeListItemViewModel>
             {
-                new RecipeListItemViewModel(),
-                new RecipeListItemViewModel(),
-                new RecipeListItemViewModel()
+                new RecipeListItemModel(),
+                new RecipeListItemModel(),
+                new RecipeListItemModel(),
+                new RecipeListItemModel()
             };
         }
 

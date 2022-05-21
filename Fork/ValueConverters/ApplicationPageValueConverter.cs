@@ -15,10 +15,12 @@ namespace Fork
             switch ((ApplicationPage)value)
             {
                 case ApplicationPage.Home:
-                    return null;
+                    var list = new RecipeListControl();
+                    list.DataContext = new RecipeListViewModel(new RecipePageViewModel());
+                    return list;
 
                 case ApplicationPage.Recipe:
-                    return new RecipePage();
+                    return new RecipePageControl();
 
                 case ApplicationPage.SelectionPage:
                     return new SelectionPage();

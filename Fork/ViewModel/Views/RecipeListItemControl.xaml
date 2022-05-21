@@ -13,8 +13,17 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ContentControl}">
-                        <Border Background="{StaticResource BackgroundLightBrush}">
-                            <Grid>
+
+                        <!-- Content -->
+                        <Border x:Name="background" Background="{StaticResource BackgroundLightBrush}">
+
+                            <!-- Click to open recipe -->
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding Path=DataContext.RecipeSelectedCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:RecipeListControl}}}"
+                                              CommandParameter="{Binding Name}"/>
+                            </Border.InputBindings>
+                            
+                            <Grid x:Name="container">
                                 <Grid.ColumnDefinitions>
                                     <!-- Selected Indicator -->
                                     <ColumnDefinition Width="Auto" />
@@ -41,7 +50,7 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
-                                        
+
                                         <!-- name -->
                                         <TextBlock Grid.Row="0"
                                             Text="{Binding Name}" 
@@ -68,12 +77,23 @@
                                                 </ItemsControl.ItemsPanel>
                                             </ItemsControl>
                                         </ListBox>
-
                                     </Grid>
-
                                 </Border>
                             </Grid>
                         </Border>
+
+                        <!-- Hover effect -->
+                        <ControlTemplate.Triggers>
+
+                            <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                <Setter Property="Background" TargetName="background" Value="{StaticResource WordVeryLightBlueBrush}"/>
+                            </DataTrigger>
+
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="container" Value="{StaticResource ForegroundDarkBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -81,6 +101,7 @@
     </UserControl.Resources>
 
     <ContentControl d:DataContext="{x:Static local:RecipeListItemModel.Instance}"
+                    
                     Style="{StaticResource ContentStyle}">
     </ContentControl>
    

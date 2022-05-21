@@ -20,7 +20,6 @@ namespace Fork
             Tags.Add(new TagModel());
             Tags.Add(new TagModel());
             IsSelected = false;
-            NewContentAvailable = false;
         }
     }
 }

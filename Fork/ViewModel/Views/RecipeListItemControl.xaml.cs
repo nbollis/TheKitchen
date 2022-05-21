@@ -11,6 +11,7 @@ namespace Fork
         public RecipeListItemControl()
         {
             InitializeComponent();
+            //this.DataContext = new RecipeListItemControl();
         }
     }
 }

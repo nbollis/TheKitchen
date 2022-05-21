@@ -11,8 +11,9 @@ namespace Fork
 
         public static RecipePageModel Instance => new RecipePageModel();
 
-        public RecipePageModel() : base()
+        public RecipePageModel()
         {
+            RecipeListViewModel = new RecipeListModel();
             
         }
     }

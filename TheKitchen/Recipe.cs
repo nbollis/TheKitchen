@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnitsNet;
 
+
 namespace TheKitchen
 {
     public class Recipe
@@ -20,6 +21,7 @@ namespace TheKitchen
         public string Description { get; set; }
         public bool Changed { get; set; }
         public double AverageRating { get; set; }
+        public string ImageFilePath { get; set; }
 
         public Recipe()
         {
