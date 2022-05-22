@@ -5,12 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using TheKitchen;
 
 namespace Fork
 {
     public class RecipeListItemViewModel : BaseViewModel
     {
+        #region Private
+
+        private BitmapImage picture;
+
+        #endregion
         #region Public Properties
         public string Name { get; set; } 
         public ObservableCollection<TagViewModel> Tags { get; set; }
@@ -23,6 +29,7 @@ namespace Fork
         #region Public Commands
 
         public ICommand OpenRecipeCommand { get; set; }
+        public BitmapImage Picture { get { return picture; } }
 
         #endregion
 
@@ -37,6 +44,11 @@ namespace Fork
             Name = recipe.Name;
             Tags = new ObservableCollection<TagViewModel>();
             IsSelected = false;
+            if (recipe.ImageFilePath != null)
+            {
+                picture = new BitmapImage(new Uri(recipe.ImageFilePath));
+
+            }
 
             OpenRecipeCommand = new RelayCommand(OpenRecipe);
         }
@@ -49,6 +61,7 @@ namespace Fork
             Name = "Tacos";
             Tags = new ObservableCollection<TagViewModel>();
         }
+
 
         #endregion
 

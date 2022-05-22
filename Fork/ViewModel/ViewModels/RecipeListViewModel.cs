@@ -61,6 +61,10 @@ namespace Fork
 
         #region Command Methods
 
+        /// <summary>
+        /// Event when a Recipe is Selected
+        /// </summary>
+        /// <param name="obj"></param>
         public void RecipeSelected(object obj)
         {
             if (SelectedItem != null)

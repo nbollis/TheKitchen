@@ -11,6 +11,7 @@ namespace TheKitchen
         public DateTime dateCooked;
         public string Notes;
         public double rating;
+        public double CookTime { get; set; }
 
         public CookInstance(string notes)
         {
@@ -22,6 +23,11 @@ namespace TheKitchen
         public CookInstance()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return dateCooked.Date.ToString() + " Ratiing: " + rating + " " + Notes;
         }
     }
 }

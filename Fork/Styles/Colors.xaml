@@ -3,7 +3,10 @@
                     xmlns:local="clr-namespace:Fork">
 
     <!-- my colors -->
-    
+
+    <Color x:Key="Text">#5b5b5b</Color>
+    <SolidColorBrush x:Key="TextBrush" Color="{StaticResource Text}" />
+
     <!-- recipe palet -->
     <Color x:Key="Thistle">#e0bbe4</Color>
     <SolidColorBrush x:Key="ThistleBrush" Color="{StaticResource Thistle}" />

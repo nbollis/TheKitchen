@@ -94,9 +94,9 @@ namespace TheKitchen
             else
             {
                 if (How.Equals(""))
-                    output += Amount + " " + Unit + " " + Name;
+                    output += Amount + " " + UnitString + " " + Name;
                 else
-                    output += Amount + " " + Unit + " " + Name + ", " + How;
+                    output += Amount + " " + UnitString + " " + Name + ", " + How;
             }
             return output;
         }

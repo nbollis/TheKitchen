@@ -13,6 +13,7 @@ namespace Fork
     {
         private ObservableCollection<Recipe> _Recipes;
         private RecipeListViewModel _RecipeListViewModel;
+        private RecipeDisplayViewModel _RecipeDisplayViewModel;
 
         #region Public Properties
 
@@ -37,6 +38,16 @@ namespace Fork
             }
         }
 
+        public RecipeDisplayViewModel RecipeDisplayViewModel
+        {
+            get { return _RecipeDisplayViewModel; }
+            set
+            {
+                _RecipeDisplayViewModel = value;
+                OnPropertyChanged(nameof(RecipeDisplayViewModel));
+            }
+        }
+
         public static int BufferThickness { get; set; } = 20;
 
         #endregion
@@ -48,6 +59,7 @@ namespace Fork
         public ICommand SearchCommand { get; set; }
         public ICommand ChangeViewCommand { get; set; }
         public ICommand SettingsCommand { get; set; }
+        public ICommand RecipeSelectedCommand { get; set; }
 
         #endregion
 
@@ -66,7 +78,7 @@ namespace Fork
             SearchCommand = new RelayCommand(() => Search());
             ChangeViewCommand = new RelayCommand(() => ChangeView());
             SettingsCommand = new RelayCommand(() => Settings());
-
+            RecipeSelectedCommand = new DelegateCommand(param => RecipeSelected(param));
         }
 
         #endregion
@@ -94,6 +106,26 @@ namespace Fork
         
         }
 
+        /// <summary>
+        /// Event when a Recipe is Selected
+        /// </summary>
+        /// <param name="obj"></param>
+        public void RecipeSelected(object obj)
+        {
+            Recipe recipe = Recipes.Where(p => p.Name.Equals(obj)).First();
+            // make changes on the left side of the screen
+            if (RecipeListViewModel.SelectedItem != null)
+            {
+                RecipeListViewModel.SelectedItem.IsSelected = false;
+            }
+            RecipeListViewModel.SelectedItem = RecipeListViewModel.RecipeList.Where(p => p.Name.Equals(obj)).First();
+            RecipeListViewModel.SelectedItem.IsSelected = true;
+
+
+            // make changes on the right side of the screen
+            RecipeDisplayViewModel = new RecipeDisplayViewModel(recipe);
+            int breakpoint = 0;
+        }
 
 
         #endregion

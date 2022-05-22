@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace TheKitchen
 {
-    internal class XmlReaderWriter
+    public class XmlReaderWriter
     {
         public static object SaveFileDialog { get; private set; }
 

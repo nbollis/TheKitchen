@@ -109,4 +109,25 @@ namespace Fork
 
         #endregion
     }
+
+    #region Private Members
+
+    #endregion
+
+    #region Public Properties
+
+    #endregion
+
+    #region Commands
+
+    #endregion
+
+    #region Constructor
+
+    #endregion
+
+    #region Private Helpers
+
+    #endregion
+
 }

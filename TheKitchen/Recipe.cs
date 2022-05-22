@@ -11,6 +11,7 @@ namespace TheKitchen
 {
     public class Recipe
     {
+        #region Public Properties
         public string Name { get; set; }
         public int Serves { get; set; }
         public List<string> Procedure { get; set; }
@@ -22,6 +23,9 @@ namespace TheKitchen
         public bool Changed { get; set; }
         public double AverageRating { get; set; }
         public string ImageFilePath { get; set; }
+        public string CookTime { get; set; }
+
+        #endregion
 
         public Recipe()
         {
@@ -81,7 +85,8 @@ namespace TheKitchen
             {
                 CookInstances.Add(new CookInstance(lines[i]));
             }
-    
+            
+            
         }
 
         
@@ -135,6 +140,18 @@ namespace TheKitchen
                     recipes.Add(new Recipe(System.IO.File.ReadAllLines(file).Where(p => p.Length > 4 && p != null).ToList()));
                 }
             }
+
+            foreach (var recipe in recipes)
+            {
+                if (recipe.ImageFilePath == null && File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\RecipePictures", recipe.Name + ".jpg")))
+                {
+                    recipe.ImageFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\RecipePictures", recipe.Name + ".jpg");
+                    recipe.Changed = true;
+                }
+            }
+
+
+
             return recipes;
         }
 

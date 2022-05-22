@@ -12,7 +12,7 @@
         Icon="C:\Users\nboll\source\repos\TheKitchen\Fork\Images\emojicook.png"
         MinHeight="{Binding WindowMinimumHeight}"
         MinWidth="{Binding WindowMinimumWidth}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="1100">
 
     <Window.Resources>
         <Style TargetType="{x:Type local:MainWindow}">
