@@ -83,27 +83,30 @@ namespace Fork
 
         #endregion
 
-        #region Private Helpers
-
-        private void GoBack() 
+        #region Command Methods
+        private void GoBack()
         {
             int breakpoint = 0;
         }
-        private void GoForward() 
-        { 
-        
-        }
-        private void Search() 
-        { 
-        
-        }
-        private void ChangeView()
-        { 
-        
-        }
-        private void Settings() 
+
+        private void GoForward()
         {
-        
+
+        }
+
+        private void Search()
+        {
+
+        }
+
+        private void ChangeView()
+        {
+
+        }
+
+        private void Settings()
+        {
+
         }
 
         /// <summary>
@@ -112,21 +115,60 @@ namespace Fork
         /// <param name="obj"></param>
         public void RecipeSelected(object obj)
         {
-            Recipe recipe = Recipes.Where(p => p.Name.Equals(obj)).First();
+            Recipe recipe = Recipes.First(p => p.Name.Equals(obj));
             // make changes on the left side of the screen
             if (RecipeListViewModel.SelectedItem != null)
             {
                 RecipeListViewModel.SelectedItem.IsSelected = false;
             }
-            RecipeListViewModel.SelectedItem = RecipeListViewModel.RecipeList.Where(p => p.Name.Equals(obj)).First();
+            RecipeListViewModel.SelectedItem = RecipeListViewModel.RecipeList.First(p => p.Name.Equals(obj));
             RecipeListViewModel.SelectedItem.IsSelected = true;
 
+            if (RecipeDisplayViewModel != null && RecipeDisplayViewModel.HasChanged)
+                SaveRecipeVMChanges();
 
             // make changes on the right side of the screen
             RecipeDisplayViewModel = new RecipeDisplayViewModel(recipe);
-            int breakpoint = 0;
         }
 
+        #endregion
+
+
+        public void OnClosing()
+        {
+            if (RecipeDisplayViewModel != null && RecipeDisplayViewModel.HasChanged)
+                SaveRecipeVMChanges();
+
+            foreach (var recipe in Recipes.Where(p => p.Changed))
+            {
+                Recipe.SaveRecipe(recipe);
+            }
+        }
+
+        /// <summary>
+        /// Saves the changes to the curently displayed Recipe to the list of recipes
+        /// </summary>
+        public void SaveRecipeVMChanges()
+        {
+            Recipe recipe = new Recipe();
+            recipe.Name = RecipeDisplayViewModel.Name;
+            recipe.Serves = RecipeDisplayViewModel.Serves;
+            recipe.Procedure = RecipeDisplayViewModel.Procedure;
+            recipe.Notes = RecipeDisplayViewModel.Notes;
+            recipe.Tags = RecipeDisplayViewModel.Tags;
+            recipe.Ingredients = RecipeDisplayViewModel.Ingredients.ToList();
+            recipe.CookInstances = RecipeDisplayViewModel.CookInstances;
+            recipe.Description = RecipeDisplayViewModel.Description;
+            recipe.Changed = RecipeDisplayViewModel.HasChanged;
+            recipe.AverageRating = RecipeDisplayViewModel.AverageRating;
+            recipe.ImageFilePath = RecipeDisplayViewModel.ImagePath;
+            recipe.CookTime = RecipeDisplayViewModel.CookTime;
+            recipe.InfoString = RecipeDisplayViewModel.InfoString;
+            int index = Recipes.IndexOf(Recipes.First(p => p.Name.Equals(recipe.Name)));
+            Recipes[index] = recipe;
+        }
+
+        #region Private Helpers
 
         #endregion
     }

@@ -12,7 +12,7 @@
             <ItemsControl ItemsSource="{Binding RecipeList}" >
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:RecipeListItemControl
+                        <local:RecipeListItemControl Height="50"
                             />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>

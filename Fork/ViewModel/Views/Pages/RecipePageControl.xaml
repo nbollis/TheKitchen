@@ -18,7 +18,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Recipe List View and Buttons -->
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="52" />
                     <RowDefinition Height="*" />
@@ -35,12 +35,12 @@
                             Name="SearchButton" Command="{Binding SearchCommand}"/>
                     <Button Style="{StaticResource IconButton}"  Content="{StaticResource FontAwesomeEllipsisIcon}" 
                             Name="ChangeViewButton" Command="{Binding ChangeViewCommand}"/>
-                    <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomeCogIcon}"
+                    <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomePlusIcon}"
                             Name="SettingsButton" Command="{Binding SettingsCommand}"/>
                 </StackPanel>
 
                 <!-- Recipe List -->
-                <Border Grid.Row="1">
+                <Border Grid.Row="1" >
                     <local:RecipeListControl DataContext="{Binding RecipeListViewModel}" />
                 </Border>
                 

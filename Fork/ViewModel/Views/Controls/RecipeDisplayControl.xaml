@@ -35,7 +35,7 @@
 
         <!-- main content -->
         <ScrollViewer Grid.Row="1" Grid.Column="1" Background="{StaticResource BackgroundLightBrush}">
-            <Grid >
+            <Grid>
 
                 <Grid.RowDefinitions>
 
@@ -60,12 +60,14 @@
                 <!-- picture -->
                 <Border Grid.Column="0" Grid.Row="0" BorderBrush="{StaticResource BackgroundLightBrush}" 
                         BorderThickness="10" HorizontalAlignment="Left" Width="160" AllowDrop="True"
-                        >
+                        Background="{StaticResource BackgroundLightBrush}">
                     <Border  BorderBrush="{StaticResource ThistleBrush}" BorderThickness="10" >
-                        <ItemsControl AllowDrop="True" Background="Transparent" local:FileDragDropHelper.IsFileDragDropEnabled="True" local:FileDragDropHelper.FileDragDropTarget="{Binding}"> 
-                            <Image Source="{Binding Picture}" HorizontalAlignment="Stretch" Margin="0"
-                                   />
-                        </ItemsControl>
+                        <Button Command="{Binding AddPictureCommand}" 
+                                    Name="AddPictureButton" BorderBrush="{StaticResource ThistleBrush}" >
+                            <ItemsControl AllowDrop="True" local:FileDragDropHelper.IsFileDragDropEnabled="True" local:FileDragDropHelper.FileDragDropTarget="{Binding}">
+                                <Image Source="{Binding Picture}" HorizontalAlignment="Stretch" Margin="-2"/>
+                            </ItemsControl>
+                        </Button>
                     </Border>
                 </Border>
 
@@ -89,8 +91,26 @@
                         <!-- name -->
                         <TextBlock Grid.Row="1" Text="{Binding Name}" FontSize="{StaticResource FontSizeLarge}" 
                                FontFamily="{StaticResource LatoBold}" Foreground="{StaticResource TextBrush}" 
-                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
+                        <!-- top row buttons -->
+                        <Border Grid.Row="1" Width="154" HorizontalAlignment="Right"
+                                BorderBrush="{StaticResource ForegroundDarkBrush}" BorderThickness="2">
+                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" 
+                                    Background="{StaticResource LavenderPurpleBrush}"  >
+                                    <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomePlusIcon}"
+                                            Name="AddToMealPrepButton" Command="{Binding AddToMealPrepCommand}"/>
+                                    <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomeDownloadIcon}"
+                                            Name="DownloadRecipeButton" Command="{Binding DownloadRecipeCommand}"/>
+                                    <Button Style="{StaticResource IconButton}"  Content="{StaticResource FontAwesomePrintIcon}" 
+                                            Name="PrintRecipeButton" Command="{Binding PrintRecipeCommand}"/>
+                                    <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomePencilIcon}"
+                                            Name="EditRecipeButton" Command="{Binding EditRecipeCommand}" />
+                                    <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomeCommentIcon}"
+                                            Name="CommentRecipeButton" Command="{Binding CommentRecipeComamnd}"/>
+                            </StackPanel>
+                        </Border>
+                                                
                         <!-- tags -->
                         <ItemsControl Grid.Row="2" ItemsSource="{Binding Tags}">
                             <ItemsControl.ItemTemplate>
@@ -103,11 +123,12 @@
 
                         <!-- info -->
                         <TextBlock Grid.Row="3" Text="{Binding InfoString}" Style="{StaticResource RegularText}"
-                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
                         <!-- description -->
                         <TextBlock Grid.Row="4" Text="{Binding Description}" Style="{StaticResource RegularText}"
-                               VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" />
+                                   VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Center"/>
                     </Grid>
                 </Border>
 
@@ -141,44 +162,65 @@
                                 <ItemsControl ItemsSource="{Binding Ingredients}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                            <DockPanel DockPanel.Dock="Top" IsHitTestVisible="False" >
                                                 <!-- dot -->
-                                                <TextBlock />
+                                                <CheckBox Margin="0 2 0 0" VerticalAlignment="Top"/>
                                                 <!-- ingredient -->
-                                                <TextBlock Text="{Binding}" Style="{StaticResource SmallText}" />
-                                            </StackPanel>
+                                                <FlowDocumentScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                                                                          VerticalAlignment="Center">
+                                                    <FlowDocument Style="{StaticResource ListWithWrap}">
+                                                        <Paragraph TextIndent="-10" Margin="10 0 0 0"  >
+                                                            <Run Text="{Binding Mode=OneWay}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </FlowDocumentScrollViewer>
+                                            </DockPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </Expander>
 
                             <!-- procedure -->
-                            <Expander Header="Procedure" IsEnabled="True" >
+                            <Expander Header="Procedure" IsExpanded="True" >
                                 <ItemsControl ItemsSource="{Binding Procedure}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
+                                            <DockPanel DockPanel.Dock="Top" IsHitTestVisible="False" >
                                                 <!-- dot -->
-                                                <TextBlock />
+                                                <CheckBox Margin="0 2 0 0" VerticalAlignment="Top"/>
                                                 <!-- ingredient -->
-                                                <TextBlock Text="{Binding}" Style="{StaticResource SmallText}" TextWrapping="Wrap"  />
-                                            </StackPanel>
+                                                <FlowDocumentScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                                                                          VerticalAlignment="Center">
+                                                    <FlowDocument Style="{StaticResource ListWithWrap}">
+                                                        <Paragraph TextIndent="-10" Margin="10 0 0 0"  >
+                                                            <Run Text="{Binding Mode=OneWay}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </FlowDocumentScrollViewer>
+                                            </DockPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </Expander>
 
                             <!-- notes -->
-                            <Expander Header="Notes" IsExpanded="True">
+                            <Expander Header="Notes">
                                 <ItemsControl ItemsSource="{Binding Notes}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
+                                            <DockPanel DockPanel.Dock="Top" IsHitTestVisible="False" >
                                                 <!-- dot -->
-                                                <TextBlock />
+                                                <RadioButton Margin="0 2 0 0" VerticalAlignment="Top"/>
                                                 <!-- ingredient -->
-                                                <TextBlock Text="{Binding}" Style="{StaticResource SmallText}" TextWrapping="WrapWithOverflow" Width="{Binding ActualWidth, ElementName=RecipeArea}" />
-                                            </StackPanel>
+                                                <FlowDocumentScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                                                                          VerticalAlignment="Center">
+                                                    <FlowDocument Style="{StaticResource ListWithWrap}">
+                                                        <Paragraph TextIndent="-10" Margin="10 0 0 0"  >
+                                                            <Run Text="{Binding Mode=OneWay}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </FlowDocumentScrollViewer>
+                                            </DockPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
@@ -189,12 +231,19 @@
                                 <ItemsControl ItemsSource="{Binding CookInstances}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
+                                            <DockPanel DockPanel.Dock="Top" IsHitTestVisible="False" >
                                                 <!-- dot -->
-                                                <TextBlock />
+                                                <RadioButton Margin="0 2 0 0" VerticalAlignment="Top"/>
                                                 <!-- ingredient -->
-                                                <TextBlock Text="{Binding}" Style="{StaticResource SmallText}" TextWrapping="WrapWithOverflow" Width="{Binding ActualWidth, ElementName=RecipeArea}" />
-                                            </StackPanel>
+                                                <FlowDocumentScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                                                                          VerticalAlignment="Center">
+                                                    <FlowDocument Style="{StaticResource ListWithWrap}" >
+                                                        <Paragraph TextIndent="-10" Margin="10 0 0 0"  >
+                                                            <Run Text="{Binding Mode=OneWay}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </FlowDocumentScrollViewer>
+                                            </DockPanel>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>

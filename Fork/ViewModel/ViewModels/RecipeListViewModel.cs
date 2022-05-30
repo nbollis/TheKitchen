@@ -71,7 +71,7 @@ namespace Fork
             {
                 SelectedItem.IsSelected = false;
             }
-            SelectedItem = RecipeList.Where(p => p.Name.Equals(obj)).First();
+            SelectedItem = RecipeList.First(p => p.Name.Equals(obj));
             SelectedItem.IsSelected = true;
         }
 

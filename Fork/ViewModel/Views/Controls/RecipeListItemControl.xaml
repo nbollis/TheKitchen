@@ -15,7 +15,7 @@
                     <ControlTemplate TargetType="{x:Type ContentControl}">
 
                         <!-- Content -->
-                        <Border x:Name="background" Background="{StaticResource BackgroundLightBrush}">
+                        <Border x:Name="background" Background="{StaticResource BackgroundLightBrush}" BorderThickness="2">
 
                             <!-- Click to open recipe -->
                             <Border.InputBindings>
@@ -37,15 +37,19 @@
                                 </Grid.ColumnDefinitions>
 
                                 <!-- Selected Indicator -->
-                                <Border Background="{StaticResource ThistleBrush}" Width="5" />
+                                <Border Background="{StaticResource ThistleBrush}" Width="5" Margin="0 0 4 0" />
 
                                 <!-- Image of Food -->
-                                <Border Grid.Column="1" Padding="8" Background="{StaticResource CottonCandyBrush}"
+                                <Border Grid.Column="1" Padding="0" Background="{StaticResource CottonCandyBrush}"
                                             Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                                            CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
-                                            >
-                                    <Image Source="{Binding ImageFilePath}">
-                                        
+                                            CornerRadius="{Binding ActualHeight, RelativeSource={RelativeSource Self}}">
+                                    <Border.Effect >
+                                        <DropShadowEffect ShadowDepth="1" />
+                                    </Border.Effect>
+                                    <Image Source="{Binding Picture}" Stretch="Fill">
+                                        <Image.Clip>
+                                            <EllipseGeometry Center="23 23" RadiusX="21" RadiusY="21" />
+                                        </Image.Clip>
                                     </Image>
                                 </Border>
 

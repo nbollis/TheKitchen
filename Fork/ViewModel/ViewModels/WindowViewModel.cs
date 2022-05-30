@@ -223,6 +223,24 @@ namespace Fork
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Switch that Executes the relevent local closing methods based upon the current page displayed
+        /// </summary>
+        /// <param name="vm"></param>
+        public void OnClosing(object obj)
+        {
+            switch (CurrentPage)
+            {
+                case ApplicationPage.Recipe:
+                    ((RecipePageViewModel)obj).OnClosing();
+                    break;
+            }
+        }
+
+        #endregion
+
         #region Private Helpers
 
         /// <summary>
@@ -248,6 +266,7 @@ namespace Fork
             OnPropertyChanged(nameof(WindowRadius));
             OnPropertyChanged(nameof(WindowCornerRadius));
         }
+
 
         #endregion
     }

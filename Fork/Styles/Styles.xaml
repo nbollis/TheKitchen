@@ -21,8 +21,13 @@
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
         <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
     </Style>
-    
-    
+
+    <Style TargetType="{x:Type FlowDocument}" x:Key="ListWithWrap" >
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="PagePadding" Value="2" />
+    </Style>
 
 
 

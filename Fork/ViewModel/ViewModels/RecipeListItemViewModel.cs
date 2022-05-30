@@ -44,10 +44,9 @@ namespace Fork
             Name = recipe.Name;
             Tags = new ObservableCollection<TagViewModel>();
             IsSelected = false;
-            if (recipe.ImageFilePath != null)
+            if (!recipe.ImageFilePath.Contains("TransparentPlus"))
             {
                 picture = new BitmapImage(new Uri(recipe.ImageFilePath));
-
             }
 
             OpenRecipeCommand = new RelayCommand(OpenRecipe);

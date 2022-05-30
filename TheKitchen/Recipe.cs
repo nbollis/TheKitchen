@@ -24,6 +24,7 @@ namespace TheKitchen
         public double AverageRating { get; set; }
         public string ImageFilePath { get; set; }
         public string CookTime { get; set; }
+        public string InfoString { get; set; }  
 
         #endregion
 
@@ -85,12 +86,14 @@ namespace TheKitchen
             {
                 CookInstances.Add(new CookInstance(lines[i]));
             }
-            
-            
         }
 
-        
+        #region Saving and Loading
 
+        /// <summary>
+        /// Saves a list of recipe objects in xml format
+        /// </summary>
+        /// <param name="recipes"></param>
         public static void SaveRecipe(List<Recipe> recipes)
         {
             foreach (var recipe in recipes)
@@ -99,10 +102,14 @@ namespace TheKitchen
             }
         }
 
+        /// <summary>
+        /// Saves a recipe object in xml format
+        /// </summary>
+        /// <param name="recipe"></param>
         public static void SaveRecipe(Recipe recipe)
         {
-            string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\Recipes", recipe.Name + ".xml");
-            bool exists = File.Exists(filepath); 
+            string filepath = Path.Combine(GetRecipeFolderPath(), recipe.Name + ".xml");
+            bool exists = File.Exists(filepath);
             if (recipe.Changed)
             {
                 if (!File.Exists(filepath))
@@ -112,21 +119,19 @@ namespace TheKitchen
                 recipe.Changed = false;
                 XmlReaderWriter.WriteToXmlFile(filepath, recipe);
             }
-                
         }
 
-
-
         /// <summary>
-        /// Loads in All recipes stored in xml format in the Datafiles/Recipes folder
+        /// Loads in All recipes stored in xml format in the Datafiles/Recipes folder as well as txt format if the folderpath is specified
         /// </summary>
         /// <returns></returns>
         public static List<Recipe> LoadRecipes(string folderPath = null)
         {
-            List<Recipe> recipes = new List<Recipe> ();
+            // loading them in from xml
+            List<Recipe> recipes = new List<Recipe>();
             if (folderPath == null)
             {
-                folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\Recipes");
+                folderPath = Path.Combine(GetRecipeFolderPath());
             }
 
             foreach (string file in Directory.EnumerateFiles(folderPath))
@@ -141,13 +146,24 @@ namespace TheKitchen
                 }
             }
 
+
+            // adjusting anything on load
             foreach (var recipe in recipes)
             {
-                if (recipe.ImageFilePath == null && File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\RecipePictures", recipe.Name + ".jpg")))
+                // set the image path
+                if (recipe.ImageFilePath == null)
                 {
-                    recipe.ImageFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\RecipePictures", recipe.Name + ".jpg");
-                    recipe.Changed = true;
+                    recipe.ImageFilePath = Path.Combine(GetImageFolderPath(), @"TransparentPlus.png");
                 }
+
+                if (recipe.InfoString == null)
+                {
+                    string cooktime = recipe.CookInstances.Any() ? recipe.CookInstances.Average(p => p.CookTime) / 60 + "h " +
+                            recipe.CookInstances.Average(p => p.CookTime) % 60 + "m" : "n/a";
+                    string rating = recipe.CookInstances.Any() ? recipe.CookInstances.Average(p => p.rating).ToString() : "n/a";
+                    recipe.InfoString = "Serves: " + recipe.Serves + "      Rating: " + rating + "     Cook Time: " + cooktime + "     Times Cooked: " + recipe.CookInstances.Count();
+                }
+
             }
 
 
@@ -155,11 +171,32 @@ namespace TheKitchen
             return recipes;
         }
 
+        #endregion
 
         public override string ToString()
         {
             return this.Name;
         }
+
+        #region Static Methods
+
+        public static string GetImageFolderPath()
+        { 
+            string imageFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\RecipePictures");
+            if (imageFolderPath.Contains(@"bin\Debug\net6.0-windows\"))
+                imageFolderPath = imageFolderPath.Replace(@"\Fork\bin\Debug\net6.0-windows\", @"\TheKitchen\");
+            return imageFolderPath;
+        }
+
+        public static string GetRecipeFolderPath()
+        {
+            string imageFolderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\Recipes");
+            if (imageFolderPath.Contains(@"bin\Debug\net6.0-windows\"))
+                imageFolderPath = imageFolderPath.Replace(@"\Fork\bin\Debug\net6.0-windows\", @"\TheKitchen\");
+            return imageFolderPath;
+        }
+
+        #endregion
 
     }
 }
