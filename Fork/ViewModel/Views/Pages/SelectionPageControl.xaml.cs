@@ -5,9 +5,9 @@ namespace Fork
     /// <summary>
     /// Interaction logic for SelectionPage.xaml
     /// </summary>
-    public partial class SelectionPage : Page
+    public partial class SelectionPageControl : Page
     {
-        public SelectionPage()
+        public SelectionPageControl()
         {
             InitializeComponent();
         }

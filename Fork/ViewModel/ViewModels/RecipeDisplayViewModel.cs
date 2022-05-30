@@ -125,7 +125,12 @@ namespace Fork
 
         private void EditRecipe()
         {
-
+            EditRecipeWindowControl recipeEditer = new();
+            EditRecipeViewModel viewModel = new(recipeEditer);
+            viewModel.Name = Name;
+            recipeEditer.DataContext = viewModel;
+            recipeEditer.EditRecipeContentGrid.DataContext = this;
+            recipeEditer.ShowDialog();
         }
 
         private void CommentRecipe()

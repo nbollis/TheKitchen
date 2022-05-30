@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -132,6 +133,8 @@ namespace Fork
         /// The current page of the applicaiton
         /// </summary>
         public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Recipe;
+
+        public string Icon { get; set; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"\Images\emojicook.png");
 
         #endregion
         #region Commands

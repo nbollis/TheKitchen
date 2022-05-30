@@ -103,13 +103,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ViewModel\Views\RecipeListControl.xaml.cs">
+    <Compile Update="ViewModel\Views\Controls\RecipeListControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ViewModel\Views\RecipeListItemControl.xaml.cs">
+    <Compile Update="ViewModel\Views\Controls\RecipeListItemControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ViewModel\Views\TagControl.xaml.cs">
+    <Compile Update="ViewModel\Views\Controls\TagControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -147,13 +147,13 @@
     <Page Update="Styles\Windows.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-    <Page Update="ViewModel\Views\RecipeListControl.xaml">
+    <Page Update="ViewModel\Views\Controls\RecipeListControl.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-    <Page Update="ViewModel\Views\RecipeListItemControl.xaml">
+    <Page Update="ViewModel\Views\Controls\RecipeListItemControl.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-    <Page Update="ViewModel\Views\TagControl.xaml">
+    <Page Update="ViewModel\Views\Controls\TagControl.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>

@@ -23,7 +23,7 @@ namespace Fork
                     return new RecipePageControl();
 
                 case ApplicationPage.SelectionPage:
-                    return new SelectionPage();
+                    return new SelectionPageControl();
 
                 default:
                     Debugger.Break();
