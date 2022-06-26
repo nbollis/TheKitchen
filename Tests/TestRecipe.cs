@@ -13,8 +13,10 @@ namespace Tests
         {
         }
 
+        // NOTE: Something is causing every recipe to be saved as an xml to test/bin/debug/net6.0/dagafiles/recipes 
+        // no clue what it is but its not my vibe to work on that atm
         [Test]
-        public void TestLoadSaveRecipe()
+        public void LoadSaveRecipe()
         {
             List<Recipe> xmlRecipes = Recipe.LoadRecipes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\Recipes\xml"));
             Assert.That(xmlRecipes.Count, Is.EqualTo(3));
@@ -23,8 +25,9 @@ namespace Tests
             Recipe xacuti = xmlRecipes[2];
 
             // will not save if recipe.Changed = false
-            Assert.IsFalse(chixFajita.Changed);
             chixFajita.Name = "fakeName";
+            chixFajita.Changed = false;
+            Assert.IsFalse(chixFajita.Changed);
             Recipe.SaveRecipe(chixFajita);
             Assert.IsFalse(File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\Recipes", chixFajita.Name + ".xml")));
 
@@ -37,10 +40,15 @@ namespace Tests
             Assert.IsFalse(couscous.Changed);
             File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"dataFiles\Recipes", couscous.Name + ".xml"));
 
+            File.Delete(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\Recipes", xacuti.Name + ".xml"));
+            xacuti.SaveRecipe();
+            Assert.That(File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\Recipes", xacuti.Name + ".xml")));
+
+
         }
 
         [Test]
-        public void TestLoadDataFromXml()
+        public void LoadDataFromXml()
         {
             List<Recipe> xmlRecipes = Recipe.LoadRecipes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\Recipes\xml"));
             Assert.That(xmlRecipes.Count, Is.EqualTo(3));
@@ -77,7 +85,7 @@ namespace Tests
         }
 
         [Test]
-        public void TestLoadDataFromOneNote()
+        public void LoadDataFromOneNote()
         {
             List<Recipe> oneRecipes = Recipe.LoadRecipes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"DataFiles\Recipes\one"));
             Assert.That(oneRecipes.Count, Is.EqualTo(3));
@@ -112,6 +120,7 @@ namespace Tests
             Assert.That(couscous.CookInstances.Count, Is.EqualTo(1));
             Assert.That(couscous.Description, Is.EqualTo(""));
         }
+
 
     }
 }

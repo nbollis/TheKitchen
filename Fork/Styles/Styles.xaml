@@ -9,25 +9,45 @@
     </ResourceDictionary.MergedDictionaries>
     
     <!-- Regular Text -->
-    <Style TargetType="{x:Type TextBlock}" x:Key="RegularText">
+    <Style TargetType="{x:Type TextBlock}" x:Key="RegularTextBlock">
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
         <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
     </Style>
 
+    <Style TargetType="{x:Type TextBox}" x:Key="RegularTextBox">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundLightBrush}" />
+    </Style>
+
     <!-- Small Text -->
-    <Style TargetType="{x:Type TextBlock}" x:Key="SmallText">
+    <Style TargetType="{x:Type TextBlock}" x:Key="SmallTextBlock">
         <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
         <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
     </Style>
 
+    <Style TargetType="{x:Type TextBox}" x:Key="SmallTextBox">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
+        <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundLightBrush}" />
+    </Style>
+
+    <!-- Others-->
     <Style TargetType="{x:Type FlowDocument}" x:Key="ListWithWrap" >
         <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
         <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+        <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}" />
         <Setter Property="PagePadding" Value="2" />
     </Style>
+    
+    
 
 
 

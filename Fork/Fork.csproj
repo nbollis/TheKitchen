@@ -35,10 +35,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ForkIO\ForkIO.csproj" />
     <ProjectReference Include="..\TheKitchen\TheKitchen.csproj" />
   </ItemGroup>
 
@@ -103,27 +105,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ViewModel\Views\Controls\RecipeListControl.xaml.cs">
+    <Compile Update="MVVM\Views\Controls\RecipeListControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ViewModel\Views\Controls\RecipeListItemControl.xaml.cs">
+    <Compile Update="MVVM\Views\Controls\ListItems\RecipeListItemControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="ViewModel\Views\Controls\TagControl.xaml.cs">
+    <Compile Update="MVVM\Views\Controls\TagControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Images\icon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Images\logo-small.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Images\logo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -147,15 +137,25 @@
     <Page Update="Styles\Windows.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-    <Page Update="ViewModel\Views\Controls\RecipeListControl.xaml">
+    <Page Update="MVVM\Views\Controls\RecipeListControl.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-    <Page Update="ViewModel\Views\Controls\RecipeListItemControl.xaml">
+    <Page Update="MVVM\Views\Controls\ListItems\RecipeListItemControl.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-    <Page Update="ViewModel\Views\Controls\TagControl.xaml">
+    <Page Update="MVVM\Views\Controls\TagControl.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MVVM\ViewModels\Editable\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Images\emojicook.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
