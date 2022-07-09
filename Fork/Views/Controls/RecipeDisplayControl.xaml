@@ -1,0 +1,269 @@
+﻿<UserControl x:Class="Fork.RecipeDisplayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fork"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1100">
+    <Grid d:DataContext="{x:Static local:RecipeModel.Instance}">
+        <Grid.ColumnDefinitions>
+
+            <!-- Left buffer -->
+            <ColumnDefinition Width="{Binding BufferThickness, FallbackValue=20}" />
+
+            <!-- main content -->
+            <ColumnDefinition Width="*" />
+
+            <!-- right buffer -->
+            <ColumnDefinition Width="{Binding BufferThickness, FallbackValue=20}" />
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+
+            <!-- upper buffer-->
+            <RowDefinition Height="{Binding BufferThickness, FallbackValue=20}" />
+
+            <!-- main content -->
+            <RowDefinition Height="*" />
+
+            <!-- lower buffer -->
+            <RowDefinition Height="{Binding BufferThickness, FallbackValue=20}" />
+
+        </Grid.RowDefinitions>
+
+        <!-- main content -->
+        <ScrollViewer Grid.Row="1" Grid.Column="1" Background="{StaticResource BackgroundLightBrush}">
+            <Grid>
+
+                <Grid.RowDefinitions>
+
+                    <!-- Pictur frame-->
+                    <RowDefinition Height="200" />
+
+                    <!-- recipe content-->
+                    <RowDefinition Height="*" />
+
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+
+                    <!-- picture frame -->
+                    <ColumnDefinition Width="160" />
+
+                    <!-- recipe content -->
+                    <ColumnDefinition Width="2*" />
+
+                </Grid.ColumnDefinitions>
+
+                <!-- picture -->
+                <Border Grid.Column="0" Grid.Row="0" BorderBrush="{StaticResource BackgroundLightBrush}" 
+                        BorderThickness="10" HorizontalAlignment="Left" Width="160" 
+                        Background="{StaticResource BackgroundLightBrush}">
+                    <Border  BorderBrush="{StaticResource ThistleBrush}" BorderThickness="10" >
+                        <Button Command="{Binding AddPictureCommand}" 
+                                    Name="AddPictureButton" BorderBrush="{StaticResource ThistleBrush}" >
+                            <ItemsControl AllowDrop="True" local:FileDragDropHelper.IsFileDragDropEnabled="True" x:Name="tacos"
+                                          local:FileDragDropHelper.FileDragDropTarget="{Binding}">
+                                <Image Source="{Binding Picture}" HorizontalAlignment="Stretch" Margin="-2"/>
+                            </ItemsControl>
+                        </Button>
+                    </Border>
+                </Border>
+
+                <!-- header text -->
+                <Border Grid.Column="1" Grid.Row="0" BorderBrush="{StaticResource BackgroundLightBrush}" BorderThickness="10" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10" />
+
+                            <!-- name -->
+                            <RowDefinition Height="34" />
+                            <!-- tags -->
+                            <RowDefinition Height="*" />
+                            <!-- serves -->
+                            <RowDefinition Height="*" />
+                            <!-- info -->
+                            <RowDefinition Height="*" />
+                            <!-- description -->
+                            <RowDefinition Height="2*" />
+
+                        </Grid.RowDefinitions>
+
+                        <!-- top row buttons -->
+                        <Border Grid.Row="1" Width="154" HorizontalAlignment="Right"
+                                BorderBrush="{StaticResource ForegroundDarkBrush}" BorderThickness="2">
+                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" 
+                                    Background="{StaticResource LavenderPurpleBrush}"  >
+                                    <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomePlusIcon}"
+                                            Name="AddToMealPrepButton" Command="{Binding AddToMealPrepCommand}"
+                                            ToolTip="Add To Meal Prep"/>
+                                    <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomeDownloadIcon}"
+                                            Name="DownloadRecipeButton" Command="{Binding DownloadRecipeCommand}"
+                                            ToolTip="Download Recipe"/>
+                                    <Button Style="{StaticResource IconButton}"  Content="{StaticResource FontAwesomePrintIcon}" 
+                                            Name="PrintRecipeButton" Command="{Binding PrintRecipeCommand}"
+                                            ToolTip="Print Recipe"/>
+                                    <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomePencilIcon}"
+                                            Name="EditRecipeButton" Command="{Binding EditRecipeCommand}"
+                                            ToolTip="Edit Recipe"/>
+                                    <Button Style="{StaticResource IconButton}" Content="{StaticResource FontAwesomeCommentIcon}"
+                                            Name="CommentRecipeButton" Command="{Binding CommentRecipeComamnd}"
+                                            ToolTip="Comment On Recipe"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- name -->
+                        <TextBlock Grid.Row="1" Text="{Binding Name}" FontSize="{StaticResource FontSizeLarge}" 
+                               FontFamily="{StaticResource LatoBold}" Foreground="{StaticResource TextBrush}" 
+                               VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+                        <!-- tags -->
+                        <ItemsControl Grid.Row="2" ItemsSource="{Binding Tags}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" Style="{StaticResource RegularTextBlock}"
+                                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- serves -->
+                        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <TextBlock Style="{StaticResource RegularTextBlock}" Text="Serves: " />
+                            <TextBlock Style="{StaticResource RegularTextBlock}" Text="{Binding Recipe.Serves}"/>
+                        </StackPanel>
+
+                        <!-- info -->
+                        <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <TextBlock Style="{StaticResource RegularTextBlock}" Text="Rating: " />
+                            <TextBlock Style="{StaticResource RegularTextBlock}" Text="{Binding AverageRating}" />
+                            <TextBlock Style="{StaticResource RegularTextBlock}" Text="   Cook Time: " />
+                            <TextBlock Style="{StaticResource RegularTextBlock}" Text="{Binding CookTime}" />
+                            <TextBlock Style="{StaticResource RegularTextBlock}" Text="   Times Cooked: " />
+                            <TextBlock Style="{StaticResource RegularTextBlock}" Text="{Binding TimesCooked}" />
+                        </StackPanel>
+
+                        <!-- description -->
+                        <TextBlock Grid.Row="5" Text="{Binding Description}" Style="{StaticResource RegularTextBlock}"
+                                   VerticalAlignment="Center" HorizontalAlignment="Left" TextWrapping="WrapWithOverflow"
+                                   TextAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- recipe content -->
+                <Border Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" BorderThickness="10" x:Name="RecipeArea" 
+                    
+                    HorizontalAlignment="Left">
+
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top">
+                            <StackPanel.Resources>
+                                <DataTemplate x:Key="titleText">
+                                    <TextBlock Text="{Binding}" 
+                                            Margin="4 0"
+                                            VerticalAlignment="Center" FontFamily="{StaticResource LatoRegular}"
+                                            Foreground="{StaticResource TextBrush}"
+                                            FontSize="{StaticResource FontSizeRegular}" 
+                                            FontWeight="Normal"
+                                            Width="{Binding RelativeSource={RelativeSource
+                                            Mode=FindAncestor, AncestorType={x:Type Expander}}, Path=ActualWidth}"
+                                            TextWrapping="Wrap"/>
+                                </DataTemplate>
+
+                                <Style TargetType="{x:Type Expander}">
+                                    <Setter Property="HeaderTemplate" Value="{StaticResource titleText}"/>
+                                </Style>
+                            </StackPanel.Resources>
+
+                            <!-- ingredients -->
+                            <Expander Header="Ingredients" IsExpanded="True" >
+                                <ItemsControl ItemsSource="{Binding Ingredients}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel   >
+                                                <!-- dot -->
+                                                <CheckBox Margin="0 2 0 0" VerticalAlignment="Top" IsHitTestVisible="True"/>
+                                                <!-- ingredient -->
+                                                <FlowDocumentScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                                                                          VerticalAlignment="Center" IsHitTestVisible="False">
+                                                    <FlowDocument Style="{StaticResource ListWithWrap}">
+                                                        <Paragraph TextIndent="-10" Margin="10 0 0 0"  >
+                                                            <Run Text="{Binding Mode=OneWay}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </FlowDocumentScrollViewer>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
+
+                            <!-- procedure -->
+                            <Expander Header="Procedure" IsExpanded="True" >
+                                <ItemsControl ItemsSource="{Binding Procedure}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel DockPanel.Dock="Top"  >
+                                                <!-- dot -->
+                                                <CheckBox Margin="0 2 0 0" VerticalAlignment="Top" IsHitTestVisible="True"/>
+                                                <!-- ingredient -->
+                                                <FlowDocumentScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                                                                          VerticalAlignment="Center" IsHitTestVisible="False">
+                                                    <FlowDocument Style="{StaticResource ListWithWrap}" >
+                                                        <Paragraph TextIndent="-10" Margin="10 0 0 0"  >
+                                                            <Run Text="{Binding Mode=OneWay}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </FlowDocumentScrollViewer>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
+
+                            <!-- notes -->
+                            <Expander Header="Notes">
+                                <ItemsControl ItemsSource="{Binding Notes}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel DockPanel.Dock="Top" IsHitTestVisible="False" >
+                                                <!-- dot -->
+                                                <RadioButton Margin="0 2 0 0" VerticalAlignment="Top"/>
+                                                <!-- ingredient -->
+                                                <FlowDocumentScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled"
+                                                                          VerticalAlignment="Center">
+                                                    <FlowDocument Style="{StaticResource ListWithWrap}">
+                                                        <Paragraph TextIndent="-10" Margin="10 0 0 0"  >
+                                                            <Run Text="{Binding Mode=OneWay}" />
+                                                        </Paragraph>
+                                                    </FlowDocument>
+                                                </FlowDocumentScrollViewer>
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
+
+                            <!-- times cooked -->
+                            <Expander Header="Times Cooked" >
+                                <ItemsControl ItemsSource="{Binding CookInstances}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <local:ProductionInstanceListItemControl IsHitTestVisible="False" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
+
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </ScrollViewer>
+        
+
+
+    </Grid>
+</UserControl>

@@ -16,7 +16,7 @@ namespace Fork
             {
                 case ApplicationPage.Home:
                     var list = new RecipeListControl();
-                    list.DataContext = new RecipeListViewModel(new RecipePageViewModel());
+                    list.DataContext = new RecipeListViewModel();
                     return list;
 
                 case ApplicationPage.Recipe:
