@@ -14,16 +14,30 @@ namespace Fork
             // Find the appropriate page
             switch ((ApplicationPage)value)
             {
-                case ApplicationPage.Home:
+                case ApplicationPage.Recipes:
                     var list = new RecipeListView();
                     list.DataContext = new RecipeListViewModel();
                     return list;
 
-                case ApplicationPage.Recipe:
-                    return new RecipePageView();
+                case ApplicationPage.MealPrep:
+                    list = new RecipeListView();
+                    list.DataContext = new RecipeListViewModel();
+                    return list;
 
-                case ApplicationPage.SelectionPage:
-                    return new SelectionPageControl();
+                case ApplicationPage.GroceryList:
+                    list = new RecipeListView();
+                    list.DataContext = new RecipeListViewModel();
+                    return list;
+
+                case ApplicationPage.Ingredients:
+                    list = new RecipeListView();
+                    list.DataContext = new RecipeListViewModel();
+                    return list;
+
+                case ApplicationPage.Techniques:
+                    list = new RecipeListView();
+                    list.DataContext = new RecipeListViewModel();
+                    return list;
 
                 default:
                     Debugger.Break();

@@ -1,13 +1,12 @@
-﻿<Page x:Class="Fork.RecipePageView"
+﻿<local:BasePage x:Class="Fork.RecipePageView" 
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Fork"
-      mc:Ignorable="d" 
+      xmlns:local="clr-namespace:Fork" d:DataContext="{d:DesignInstance Type=local:RecipePageModel}"
+                mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="1100"
-      
-      Title="RecipePage">
+      x:Name="Page">
 
     <Border Background="{StaticResource BackgroundLightBrush}" >
         <Grid d:DataContext="{x:Static local:RecipePageModel.Instance}">
@@ -58,4 +57,4 @@
 
         </Grid>
     </Border>
-</Page>
+</local:BasePage>

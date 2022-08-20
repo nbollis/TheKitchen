@@ -7,7 +7,7 @@ namespace Fork
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private RecipeLogic RecipeLogic;
+        public ApplicationViewModel ApplicationViewModel => new ApplicationViewModel();
         public MainWindow()
         {
             InitializeComponent();
@@ -18,7 +18,7 @@ namespace Fork
 
         private void AppWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ((WindowViewModel)this.DataContext).OnClosing(((RecipePageView)MainFrame.Content).DataContext);
+            //ApplicationViewModel.OnClosing(((RecipePageView)MainFrame.Content).DataContext);
         }
     }
 }

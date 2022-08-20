@@ -8,7 +8,7 @@ namespace Fork
 {
     public class EditCategoriesModel : EditCategoriesViewModel
     {
-        public static EditCategoriesModel Instance = new EditCategoriesModel(); 
+        public static EditCategoriesModel Instance => new EditCategoriesModel(); 
         public EditCategoriesModel() : base()
         {
 

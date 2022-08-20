@@ -143,7 +143,7 @@ namespace Fork
 
     #endregion
 
-    #region Private Helpers
+    #region Helpers
 
     #endregion
 

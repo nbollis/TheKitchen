@@ -43,7 +43,47 @@
         <Setter Property="PagePadding" Value="2" />
     </Style>
     
-    
+    <!-- Tab Item Style -->
+    <Style x:Key="TabItemStyle" TargetType="TabItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TabItem">
+                    <Grid Height="35" Width="105" Background="{StaticResource UbeBrush}">
+                        <Border Name="Border" Margin="0,0,0,0" Background="Transparent"
+                                                BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" >
+                            <ContentPresenter 
+                                                x:Name="ContentSite" 
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"
+                                                ContentSource="Header" Margin="5,2,10,2"
+                                                RecognizesAccessKey="True">
+                            </ContentPresenter>
+                        </Border>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="BorderThickness" Value="0,0,7,0"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <!--Color of tab item text (when selected)-->
+                            <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}"/>
+                            <!--Color of tab item right side (when selected)-->
+                            <Setter Property="BorderBrush" Value="{StaticResource LumberBrush}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsSelected" Value="False">
+                            <!--Color of tab item text (when deselected)-->
+                            <Setter Property="Foreground" Value="{StaticResource UbeBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Margin" Value="0,0,2,0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
 
 
 

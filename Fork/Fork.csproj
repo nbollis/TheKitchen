@@ -43,11 +43,13 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
+    <PackageReference Include="Ninject" Version="3.3.6" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" />
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ForkCore\ForkCore.csproj" />
     <ProjectReference Include="..\ForkIO\ForkIO.csproj" />
     <ProjectReference Include="..\TheKitchen\TheKitchen.csproj" />
   </ItemGroup>

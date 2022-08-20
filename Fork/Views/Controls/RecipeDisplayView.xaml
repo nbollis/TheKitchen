@@ -10,26 +10,26 @@
         <Grid.ColumnDefinitions>
 
             <!-- Left buffer -->
-            <ColumnDefinition Width="{Binding BufferThickness, FallbackValue=20}" />
+            <ColumnDefinition Width="{Binding BufferThickness, FallbackValue=10}" />
 
             <!-- main content -->
             <ColumnDefinition Width="*" />
 
             <!-- right buffer -->
-            <ColumnDefinition Width="{Binding BufferThickness, FallbackValue=20}" />
+            <ColumnDefinition Width="{Binding BufferThickness, FallbackValue=10}" />
 
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
 
             <!-- upper buffer-->
-            <RowDefinition Height="{Binding BufferThickness, FallbackValue=20}" />
+            <RowDefinition Height="{Binding BufferThickness, FallbackValue=10}" />
 
             <!-- main content -->
             <RowDefinition Height="*" />
 
             <!-- lower buffer -->
-            <RowDefinition Height="{Binding BufferThickness, FallbackValue=20}" />
+            <RowDefinition Height="{Binding BufferThickness, FallbackValue=10}" />
 
         </Grid.RowDefinitions>
 

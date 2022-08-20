@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fork
 {
-    public class RecipePageModel : RecipePageViewModel
+    public class RecipePageModel : RecipesPageViewModel
     {
 
         public static RecipePageModel Instance => new RecipePageModel();

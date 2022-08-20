@@ -11,7 +11,7 @@
     <Color x:Key="Thistle">#e0bbe4</Color>
     <SolidColorBrush x:Key="ThistleBrush" Color="{StaticResource Thistle}" />
 
-    <Color x:Key="LavenderPurple">#957dad</Color>
+    <Color x:Key="LavenderPurple">#B7A2CC</Color>
     <SolidColorBrush x:Key="LavenderPurpleBrush" Color="{StaticResource LavenderPurple}" />
 
     <Color x:Key="PastelViolet">#d291bc</Color>
@@ -22,6 +22,9 @@
 
     <Color x:Key="Lumber">#ffdfd3</Color>
     <SolidColorBrush x:Key="LumberBrush" Color="{StaticResource Lumber}" />
+
+    <Color x:Key="Ube">#8a88c1</Color>
+    <SolidColorBrush x:Key="UbeBrush" Color="{StaticResource Ube}" />
 
     <!-- from falseto.word -->
     <Color x:Key="BackgroundLight">#efefef</Color>
