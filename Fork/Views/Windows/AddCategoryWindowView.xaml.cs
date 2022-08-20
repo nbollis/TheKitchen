@@ -10,19 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Fork
 {
     /// <summary>
-    /// Interaction logic for ProductionInstanceListItemEditableControl.xaml
+    /// Interaction logic for AddCategoryWindowView.xaml
     /// </summary>
-    public partial class ProductionInstanceListItemEditableControl : UserControl
+    public partial class AddCategoryWindowView : Window
     {
-        public ProductionInstanceListItemEditableControl()
+        public AddCategoryWindowView(EditCategoriesViewModel dataContext)
         {
             InitializeComponent();
+            AddCategoryContentBorder.DataContext = dataContext;
         }
     }
 }

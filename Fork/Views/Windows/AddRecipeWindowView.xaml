@@ -1,4 +1,4 @@
-﻿<Window x:Class="Fork.AddCookInstanceWindowControl"
+﻿<Window x:Class="Fork.AddRecipeWindowView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,9 +10,10 @@
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         Icon="{Binding Icon}"
-        Title="AddCookInstanceWindowControl" Height="300" Width="400">
+        Title="AddRecipeWindowView" Height="600" Width="800">
+    
     <Window.Resources>
-        <Style TargetType="{x:Type local:AddCookInstanceWindowControl}"  >
+        <Style TargetType="{x:Type local:AddRecipeWindowView}"  >
             <Setter Property="Template" >
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}" >
@@ -86,8 +87,8 @@
                                         <!-- Title -->
                                         <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
                                             <StackPanel>
-                                                <TextBlock Text="Add Cook Notes"  TextAlignment="Center"
-                                                           Style="{StaticResource RegularTextBlock}"   />
+                                                <TextBlock Text="Add Recipe"  TextAlignment="Center"
+                                                           Style="{StaticResource RegularTextBlock}"  />
                                             </StackPanel>
                                         </Viewbox>
 
@@ -124,9 +125,9 @@
             />
     </WindowChrome.WindowChrome>
 
-    <Border x:Name="CommentRecipeContentBorder" DataContext="{Binding}" BorderThickness="20"
+    <Border x:Name="AddRecipeContentBorder" DataContext="{Binding}" BorderThickness="20"
             Background="{StaticResource BackgroundLightBrush}" BorderBrush="{StaticResource LavenderPurpleBrush}" 
-            d:DataContext="{x:Static local:RecipeModel.Instance}">
+            d:DataContext="{x:Static local:AddRecipeModel.Instance}">
         <Grid>
 
             <Grid.ColumnDefinitions>
@@ -149,44 +150,55 @@
 
                 <!-- main content -->
                 <RowDefinition Height="*" />
-
-                <!-- buttons -->
-                <RowDefinition Height="30" />
-
+                
+                <!-- Buttons -->
+                <RowDefinition Height="20" />
+                
                 <!-- lower buffer -->
                 <RowDefinition Height="{Binding BufferThickness, FallbackValue=20}" />
 
             </Grid.RowDefinitions>
 
-            <!-- main contents-->
-            <DockPanel  Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch">
+            <!-- main content -->
+            <Grid Grid.Row="1" Grid.Column="1" >
 
-                <!-- rating -->
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="4">
-                    <TextBlock Style="{StaticResource RegularTextBlock}" Text="Rating" HorizontalAlignment="Center" />
-                    <TextBox Name="RatingInteger"  Style="{StaticResource RegularTextBox}" FontSize="42" Text="0"
-                                 HorizontalContentAlignment="Center"/>
-                    <TextBlock Style="{StaticResource RegularTextBlock}" Text="Time Spent" Margin="0 10 0 0" />
-                    <TextBox Name="TimeSpanBox"  Style="{StaticResource RegularTextBox}"  Text="1h 30m" Background="{StaticResource BackgroundVeryLightBrush}"
-                                 HorizontalContentAlignment="Center" FontSize="18"/>
-                </StackPanel>
+                <Grid.ColumnDefinitions>
+                    <!-- List and Drag Drop-->
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
 
-                <RichTextBox SpellCheck.IsEnabled="True" BorderThickness="1" BorderBrush="{StaticResource ForegroundDarkBrush}"
-                             Name="NotesBox" HorizontalAlignment="Stretch" >
-                </RichTextBox>
+                </Grid.ColumnDefinitions>
 
-            </DockPanel>
+                <Border Grid.Column="0" BorderBrush="{StaticResource ForegroundMainBrush}" BorderThickness="2" >
+                    <Button Command="{Binding AddFilesCommand}" Name="AddFilesButton" AllowDrop="True" local:FileDragDropHelper.IsFileDragDropEnabled="True"
+                            local:FileDragDropHelper.FileDragDropTarget="{Binding}" VerticalContentAlignment="Top" Background="{StaticResource BackgroundLightBrush}">
+                        <local:RecipeListView DataContext="{Binding RecipeListViewModel}" />
+                    </Button>
+                </Border>
 
-            <!-- Buttons -->
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" 
-                    HorizontalAlignment="Center" VerticalAlignment="Bottom" >
-                <Button WindowChrome.IsHitTestVisibleInChrome="True" Content="Save and Close" 
-                    Width="140" Height="30" Margin="-10" Command="{Binding Path=DataContext.SetDialogResultsToTrueCommand, 
-                                RelativeSource={RelativeSource AncestorType=local:AddCookInstanceWindowControl}}"
-                                CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
-                                AncestorType={x:Type local:AddCookInstanceWindowControl}}}">
+                <!-- main content -->
+                <local:EditRecipeView DataContext="{Binding RecipeViewModel}"  Grid.Column="1"
+                                         d:DataContext="{x:Static local:RecipeModel.Instance}"
+                                         Background="{StaticResource BackgroundVeryLightBrush}"/>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"
+                    HorizontalAlignment="Center" VerticalAlignment="Top" >
+                <Button WindowChrome.IsHitTestVisibleInChrome="True" Content="Delete Recipe" 
+                        Width="140" Margin="5 5 5 0" Command="{Binding RemoveRecipeCommand}"/>
+                <Button WindowChrome.IsHitTestVisibleInChrome="True" Content="Add All and Close" 
+                    Width="140" Height="30" Margin="5 5 5 0" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click" >
+                            <i:InvokeCommandAction Command="{Binding AddAllRecipesCommand}" />
+                            <i:InvokeCommandAction  Command="{Binding Path=DataContext.CloseCommand, RelativeSource={RelativeSource AncestorType=local:AddRecipeWindowView}}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </Button>
+                <Button WindowChrome.IsHitTestVisibleInChrome="True" Content="Add Recipe"
+                        Width="140" Height="30" Margin="5 5 5 0" Command="{Binding AddRecipeCommand}" />
             </StackPanel>
         </Grid>
     </Border>
+
 </Window>

@@ -6,9 +6,9 @@ namespace Fork
     /// <summary>
     /// Interaction logic for EditRecipeWindow.xaml
     /// </summary>
-    public partial class EditRecipeWindowControl : Window
+    public partial class EditRecipeWindowView : Window
     {
-        public EditRecipeWindowControl(RecipeViewModel dataContext)
+        public EditRecipeWindowView(RecipeViewModel dataContext)
         {
             InitializeComponent();
             EditRecipeContentBorder.DataContext = dataContext;

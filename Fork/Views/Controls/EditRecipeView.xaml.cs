@@ -16,13 +16,18 @@ using System.Windows.Shapes;
 namespace Fork
 {
     /// <summary>
-    /// Interaction logic for CookInstanceListEditable.xaml
+    /// Interaction logic for EditRecipeView.xaml
     /// </summary>
-    public partial class ProductionInstanceListItemControl : UserControl
+    public partial class EditRecipeView : UserControl
     {
-        public ProductionInstanceListItemControl()
+        public EditRecipeView()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = ForkGlobalData.CheckIfValueIsInteger(e.Text);
         }
     }
 }

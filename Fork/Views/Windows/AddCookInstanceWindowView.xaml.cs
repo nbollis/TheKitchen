@@ -3,12 +3,12 @@
 namespace Fork
 {
     /// <summary>
-    /// Interaction logic for AddCookInstanceWindowControl.xaml
+    /// Interaction logic for AddCookInstanceWindowView.xaml
     /// </summary>
-    public partial class AddCookInstanceWindowControl : Window
+    public partial class AddCookInstanceWindowView : Window
     {
 
-        public AddCookInstanceWindowControl(RecipeViewModel dataContext)
+        public AddCookInstanceWindowView(RecipeViewModel dataContext)
         {
             InitializeComponent();
             CommentRecipeContentBorder.DataContext = dataContext;

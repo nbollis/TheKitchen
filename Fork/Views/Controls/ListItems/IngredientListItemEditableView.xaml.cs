@@ -19,9 +19,9 @@ namespace Fork
     /// <summary>
     /// Interaction logic for IngredientListItemEditable.xaml
     /// </summary>
-    public partial class IngredientListItemEditableControl : UserControl
+    public partial class IngredientListItemEditableView : UserControl
     {
-        public IngredientListItemEditableControl()
+        public IngredientListItemEditableView()
         {
             InitializeComponent();
         }

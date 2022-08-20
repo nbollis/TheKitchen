@@ -18,7 +18,7 @@ namespace Fork
 
         private void AppWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            ((WindowViewModel)this.DataContext).OnClosing(((RecipePageControl)MainFrame.Content).DataContext);
+            ((WindowViewModel)this.DataContext).OnClosing(((RecipePageView)MainFrame.Content).DataContext);
         }
     }
 }

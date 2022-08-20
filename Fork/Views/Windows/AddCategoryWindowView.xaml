@@ -1,0 +1,231 @@
+﻿<Window x:Class="Fork.AddCategoryWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fork"
+        xmlns:wpfx="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Icon="{Binding Icon}"
+        Title="AddCategoryWindowView" Height="360" Width="460">
+    <Window.Resources>
+        <Style TargetType="{x:Type local:AddCategoryWindowView}"  >
+            <Setter Property="Template" >
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}" >
+                        <!-- Outer border with the drop shadow margin -->
+                        <Border Padding="{Binding OuterMarginSize, FallbackValue=0}" 
+                                    BorderBrush="{StaticResource ForegroundDarkBrush}" 
+                                    BorderThickness="{Binding FlatBorderThickness}">
+                            <!-- main window outline-->
+                            <Grid>
+
+                                <!-- Outer dragging border -->
+                                <Border BorderThickness="{Binding BeingMoved, Converter={local:BooleanToBorderThicknessConverter}}"
+                                            Panel.ZIndex="2"
+                                            CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
+                                            BorderBrush="{StaticResource WordOrangeBrush}" />
+
+                                <!-- Opacity mask for corners on grid -->
+                                <Border x:Name="Container"
+                                            Background="{StaticResource BackgroundLightBrush}"
+                                            CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}" />
+
+                                <!-- Window border and drop shadow -->
+                                <Border CornerRadius="{Binding WindowCornerRadius, FallbackValue=10}"
+                                        Background="{StaticResource ForegroundLightBrush}">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="0.5" Opacity="0.2" />
+                                    </Border.Effect>
+                                </Border>
+
+                                <!-- main windown content -->
+                                <Grid>
+
+                                    <!-- Corner clipping -->
+                                    <Grid.OpacityMask>
+                                        <VisualBrush Visual="{Binding ElementName=Container}" />
+                                    </Grid.OpacityMask>
+
+                                    <Grid.RowDefinitions>
+
+                                        <!-- Titel bar -->
+                                        <RowDefinition Height="{Binding TitleHeightGridLength, FallbackValue=32}" />
+
+                                        <!-- window content -->
+                                        <RowDefinition Height="*" />
+
+                                    </Grid.RowDefinitions>
+
+                                    <!-- title bar -->
+                                    <Grid Grid.Column="0" Panel.ZIndex="1" >
+
+                                        <Grid.ColumnDefinitions>
+
+                                            <!-- icon -->
+                                            <ColumnDefinition Width="Auto" />
+                                            <!-- Title -->
+                                            <ColumnDefinition Width="*" />
+                                            <!-- windows buttons -->
+                                            <ColumnDefinition Width="Auto" />
+
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- icon -->
+                                        <Button Command="{Binding MenuCommand}"
+                                                    Style="{StaticResource SystemIconButton}"
+                                                    Grid.Column="0"
+                                                    Background="{StaticResource ForegroundLightBrush}"
+                                                    >
+                                            <Image Source="{Binding Icon}"/>
+                                        </Button>
+
+                                        <!-- Title -->
+                                        <Viewbox Grid.Column="0" Grid.ColumnSpan="3" Margin="5">
+                                            <StackPanel>
+                                                <TextBlock Text="Category Editer"  TextAlignment="Center" 
+                                                               Style="{StaticResource RegularTextBlock}"   />
+                                            </StackPanel>
+                                        </Viewbox>
+
+                                        <!-- Window Buttons -->
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                            <Button Command="{Binding MinimizeCommand}" Style="{StaticResource WindowControlButton}" Content="_" />
+                                            <Button Command="{Binding MaximizeCommand}" Style="{StaticResource WindowControlButton}" Content="[ ]" />
+                                            <Button Command="{Binding CloseCommand}" Style="{StaticResource WindowCloseButton}" Content="X" />
+                                        </StackPanel>
+
+                                    </Grid>
+
+                                    <!-- page content -->
+                                    <Border Grid.Row="1" Padding="{Binding InnerContentPadding}" ClipToBounds="True">
+                                        <ContentPresenter Content="{TemplateBinding Content}" />
+                                    </Border>
+
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <local:ForkGlobalData x:Key="dataSingleton" />
+    </Window.Resources>
+
+    <!-- Adds basic support back -->
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+            ResizeBorderThickness="{Binding ResizeBorderThickness}"
+            CaptionHeight="{Binding TitleHeight}"
+            GlassFrameThickness="0"
+            CornerRadius="0"
+            />
+    </WindowChrome.WindowChrome>
+
+    <Border x:Name="AddCategoryContentBorder" DataContext="{Binding}" BorderThickness="20" 
+            BorderBrush="{StaticResource LavenderPurpleBrush}" d:DataContext="{x:Static local:EditCategoriesModel.Instance}"
+            Background="{StaticResource BackgroundLightBrush}">
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+
+                <!-- Left buffer -->
+                <ColumnDefinition Width="20" />
+
+                <!-- list -->
+                <ColumnDefinition Width="*" />
+                
+                <!-- options -->
+                <ColumnDefinition Width="2*" />
+
+                <!-- right buffer -->
+                <ColumnDefinition Width="20" />
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+
+                <!-- upper buffer-->
+                <RowDefinition Height="20" />
+
+                <!-- main content -->
+                <RowDefinition Height="*" />
+
+                <!-- buttons -->
+                <RowDefinition Height="Auto" />
+
+                <!-- lower buffer -->
+                <RowDefinition Height="20" />
+
+            </Grid.RowDefinitions>
+
+            <!-- Left Side ScrollViewer -->
+            <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" WindowChrome.IsHitTestVisibleInChrome="True">
+                <ItemsControl 
+                ItemsSource="{Binding AllCategories}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:TagView Margin="1"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+            
+            
+            <!-- main contents-->
+            <StackPanel x:Name="ContentPanel" Grid.Row="1" Grid.Column="2" DataContext="{Binding SelectedCategory}">
+                <StackPanel  HorizontalAlignment="Stretch" Orientation="Horizontal" VerticalAlignment="Top">
+
+                    <StackPanel>
+                        <Label Content="Category Name" Height="25" FontFamily="{StaticResource LatoRegular}"  />
+                        <TextBox SpellCheck.IsEnabled="True" BorderThickness="1" BorderBrush="{StaticResource ForegroundDarkBrush}"
+                             Name="CategoryName" HorizontalAlignment="Stretch" Height="40" Width="100" Background="{StaticResource BackgroundVeryLightBrush}"
+                                 Style="{StaticResource RegularTextBox}" Text="{Binding Name}" TextAlignment="Center" VerticalContentAlignment="Center">
+                        </TextBox>
+                    </StackPanel>
+
+                    <wpfx:ColorPicker x:Name="ColorRGB" Height="40" DisplayColorAndName="True"  Margin="10 24 0 0" HorizontalAlignment="Right"
+                                      SelectedColor="{Binding RGB}" BorderBrush="{StaticResource ForegroundDarkBrush}" FontFamily="{StaticResource LatoThin}" />
+                </StackPanel>
+
+                <StackPanel>
+                    <Label Content="Category Description" Height="25" FontFamily="{StaticResource LatoRegular}" HorizontalAlignment="Center" />
+                    <TextBox SpellCheck.IsEnabled="True" BorderThickness="1" BorderBrush="{StaticResource ForegroundDarkBrush}"
+                             Name="Descripton" HorizontalAlignment="Stretch" Height="40" Width="244" Background="{StaticResource BackgroundVeryLightBrush}"
+                                 Style="{StaticResource RegularTextBox}" Text="{Binding Description}" TextAlignment="Center" VerticalContentAlignment="Center">
+                    </TextBox>
+                </StackPanel>
+            </StackPanel>
+            
+
+            <!-- Buttons -->
+            <StackPanel Grid.Row="2" Grid.Column="2" >
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <Button WindowChrome.IsHitTestVisibleInChrome="True" Content="Save" 
+                    Width="80" Height="30" Margin="5 5 5 5" 
+                        Command="{Binding SaveCategoryCommand}">
+                    </Button>
+                    <Button WindowChrome.IsHitTestVisibleInChrome="True" Content="Delete" 
+                    Width="80" Height="30" Margin="5 5 5 5"  
+                        Command="{Binding DeleteCategoryCommand}">
+                    </Button>
+                </StackPanel>
+                
+                <Button WindowChrome.IsHitTestVisibleInChrome="True" Content="Create New" 
+                    Width="80" Height="30" Margin="5 5 5 5" 
+                        Command="{Binding CreateNewCategoryCommand}">
+                </Button>
+            </StackPanel>
+            
+        </Grid>
+    </Border>
+
+</Window>

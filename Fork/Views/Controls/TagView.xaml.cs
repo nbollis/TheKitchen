@@ -10,19 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Fork
 {
     /// <summary>
-    /// Interaction logic for AddCategoryWindowControl.xaml
+    /// Interaction logic for TagView.xaml
     /// </summary>
-    public partial class AddCategoryWindowControl : Window
+    public partial class TagView : UserControl
     {
-        public AddCategoryWindowControl(EditCategoriesViewModel dataContext)
+        public TagView()
         {
             InitializeComponent();
-            AddCategoryContentBorder.DataContext = dataContext;
         }
     }
 }

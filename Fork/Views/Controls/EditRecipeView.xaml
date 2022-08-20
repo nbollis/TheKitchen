@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Fork.EditRecipeControl"
+﻿<UserControl x:Class="Fork.EditRecipeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,7 +15,7 @@
             <ItemsControl Grid.Row="2" ItemsSource="{Binding Categories}" Height="20" Margin="2">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:TagControl />
+                        <local:TagView />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             <ItemsControl.ItemsPanel>
@@ -48,7 +48,7 @@
                     <ItemsControl ItemsSource="{Binding Ingredients}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <local:IngredientListItemEditableControl  />
+                                <local:IngredientListItemEditableView  />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -61,7 +61,7 @@
                               Width="100">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <local:TagControl />
+                                <local:TagView />
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
@@ -115,7 +115,7 @@
                 <ItemsControl ItemsSource="{Binding CookInstances}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <local:ProductionInstanceListItemEditableControl/>
+                            <local:ProductionInstanceListItemEditableView/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

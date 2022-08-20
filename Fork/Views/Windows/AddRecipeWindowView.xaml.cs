@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Fork
 {
     /// <summary>
-    /// Interaction logic for AddRecipeWindowControl.xaml
+    /// Interaction logic for AddRecipeWindowView.xaml
     /// </summary>
-    public partial class AddRecipeWindowControl : Window
+    public partial class AddRecipeWindowView : Window
     {
-        public AddRecipeWindowControl(AddRecipeViewModel addRecipeViewModel)
+        public AddRecipeWindowView(AddRecipeViewModel addRecipeViewModel)
         {
             InitializeComponent();
             AddRecipeContentBorder.DataContext = addRecipeViewModel;

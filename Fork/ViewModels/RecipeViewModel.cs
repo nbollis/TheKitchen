@@ -233,26 +233,26 @@ namespace Fork
 
         private void EditRecipe()
         {
-            EditRecipeWindowControl editRecipeWindowControl = new(this);
-            WindowViewModel windowViewModel = new(editRecipeWindowControl);
-            editRecipeWindowControl.DataContext = windowViewModel;
-            editRecipeWindowControl.ShowDialog();
+            EditRecipeWindowView editRecipeWindowView = new(this);
+            WindowViewModel windowViewModel = new(editRecipeWindowView);
+            editRecipeWindowView.DataContext = windowViewModel;
+            editRecipeWindowView.ShowDialog();
             CalculateAverageValues();
         }
 
         private void CommentRecipe()
         {
-            AddCookInstanceWindowControl addCookInstanceWindowControl = new(this);
-            WindowViewModel windowViewModel = new(addCookInstanceWindowControl);
-            addCookInstanceWindowControl.DataContext = windowViewModel;
-            addCookInstanceWindowControl.ShowDialog();
+            AddCookInstanceWindowView addCookInstanceWindowView = new(this);
+            WindowViewModel windowViewModel = new(addCookInstanceWindowView);
+            addCookInstanceWindowView.DataContext = windowViewModel;
+            addCookInstanceWindowView.ShowDialog();
 
-            if (addCookInstanceWindowControl.DialogResult == true)
+            if (addCookInstanceWindowView.DialogResult == true)
             {
                 HasChanged = true;
-                string notes = new TextRange(addCookInstanceWindowControl.NotesBox.Document.ContentStart, addCookInstanceWindowControl.NotesBox.Document.ContentEnd).Text;
-                CookInstance cookInstance = new(int.Parse(addCookInstanceWindowControl.RatingInteger.Text),
-                    notes, Converters.GetTimeSpan(addCookInstanceWindowControl.TimeSpanBox.Text));
+                string notes = new TextRange(addCookInstanceWindowView.NotesBox.Document.ContentStart, addCookInstanceWindowView.NotesBox.Document.ContentEnd).Text;
+                CookInstance cookInstance = new(int.Parse(addCookInstanceWindowView.RatingInteger.Text),
+                    notes, Converters.GetTimeSpan(addCookInstanceWindowView.TimeSpanBox.Text));
                 CookInstances.Add(cookInstance);
                 Recipe.CookInstances.Add(cookInstance);
             }
@@ -364,10 +364,10 @@ namespace Fork
         private void OpenCategoryWindow()
         {
             EditCategoriesViewModel editCategoriesViewModel = new EditCategoriesViewModel();
-            AddCategoryWindowControl addCategoryWindowControl = new(editCategoriesViewModel);
-            WindowViewModel windowViewModel = new(addCategoryWindowControl);
-            addCategoryWindowControl.DataContext = windowViewModel;
-            addCategoryWindowControl.ShowDialog();
+            AddCategoryWindowView addCategoryWindowView = new(editCategoriesViewModel);
+            WindowViewModel windowViewModel = new(addCategoryWindowView);
+            addCategoryWindowView.DataContext = windowViewModel;
+            addCategoryWindowView.ShowDialog();
             _possibleCategories = ForkGlobalData.AllCategories;
             OnPropertyChanged(nameof(PossibleCateogories));
             

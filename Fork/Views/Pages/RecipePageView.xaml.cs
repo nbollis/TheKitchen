@@ -5,9 +5,9 @@ namespace Fork
     /// <summary>
     /// Interaction logic for RecipePage.xaml
     /// </summary>
-    public partial class RecipePageControl : Page
+    public partial class RecipePageView : Page
     {
-        public RecipePageControl()
+        public RecipePageView()
         {
             InitializeComponent();
             var viewModel = new RecipePageViewModel();

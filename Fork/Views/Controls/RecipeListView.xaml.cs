@@ -3,11 +3,11 @@
 namespace Fork
 {
     /// <summary>
-    /// Interaction logic for RecipeDisplayControl.xaml
+    /// Interaction logic for RecipeListView.xaml
     /// </summary>
-    public partial class RecipeDisplayControl : UserControl
+    public partial class RecipeListView : UserControl
     {
-        public RecipeDisplayControl()
+        public RecipeListView()
         {
             InitializeComponent();
         }

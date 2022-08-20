@@ -118,13 +118,13 @@ namespace Fork
         private void AddRecipe()
         {
             AddRecipeViewModel addRecipeViewModel= new();
-            AddRecipeWindowControl addRecipeWindowControl = new(addRecipeViewModel);
-            WindowViewModel windowViewModel = new(addRecipeWindowControl); 
-            addRecipeWindowControl.DataContext = windowViewModel;
+            AddRecipeWindowView addRecipeWindowView = new(addRecipeViewModel);
+            WindowViewModel windowViewModel = new(addRecipeWindowView); 
+            addRecipeWindowView.DataContext = windowViewModel;
 
             RecipeViewModel.ItemSelected -= ListItemSelected;
             RecipeViewModel.ItemSelected += addRecipeViewModel.ListItemSelected;
-            addRecipeWindowControl.ShowDialog();
+            addRecipeWindowView.ShowDialog();
 
             if (addRecipeViewModel.RecipesToAdd.Any())
             {

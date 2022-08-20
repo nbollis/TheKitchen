@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Fork
 {
     /// <summary>
-    /// Interaction logic for TagControl.xaml
+    /// Interaction logic for ProductionInstanceListItemEditableView.xaml
     /// </summary>
-    public partial class TagControl : UserControl
+    public partial class ProductionInstanceListItemEditableView : UserControl
     {
-        public TagControl()
+        public ProductionInstanceListItemEditableView()
         {
             InitializeComponent();
         }
