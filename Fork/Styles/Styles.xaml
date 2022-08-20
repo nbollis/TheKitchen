@@ -19,8 +19,6 @@
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
         <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
-        <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BackgroundLightBrush}" />
     </Style>
 
     <!-- Small Text -->
@@ -33,9 +31,8 @@
     <Style TargetType="{x:Type TextBox}" x:Key="SmallTextBox">
         <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
-        <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
-        <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource BackgroundLightBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"  />
+        <Setter Property="Background" Value="Transparent" />
     </Style>
 
     <!-- Others-->
@@ -43,7 +40,6 @@
         <Setter Property="FontSize" Value="{StaticResource FontSizeSmall}" />
         <Setter Property="FontFamily" Value="{StaticResource LatoRegular}" />
         <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
-        <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}" />
         <Setter Property="PagePadding" Value="2" />
     </Style>
     

@@ -19,24 +19,25 @@ namespace Fork
 
     #region Private Members
 
-        private BitmapImage picture;
         private string name;
         private int _serves;
         private ObservableCollection<string> _procedure;
         private ObservableCollection<string> _notes;
-        private ObservableCollection<string> _tags;
+        private ObservableCollection<CategoryViewModel> _categories;
         private ObservableCollection<Ingredient> _ingredients;
         private ObservableCollection<CookInstance> _cookInstances;
         private string _description;
         private double _averageRating;
         private string _cookTime;
         private int _timesCooked;
+        private static List<Category> _possibleCategories = ForkGlobalData.AllCategories;
+    
 
     #endregion
 
     #region Public Properties
 
-        public Recipe Recipe { get; set; }
+    public Recipe Recipe { get; set; }
         public string Name
         {
             get { return name; }
@@ -48,7 +49,6 @@ namespace Fork
                     HasChanged = true;
                 }
                 name = value;
-                Recipe.Name = value;
                 OnPropertyChanged(nameof(Name));   
             }
         }
@@ -70,11 +70,14 @@ namespace Fork
             set { _notes = value; Recipe.Notes = value.ToList(); 
                 OnPropertyChanged(nameof(Notes)); }
         }
-        public ObservableCollection<string> Tags
+        public ObservableCollection<CategoryViewModel> Categories
         {
-            get { return _tags; }   
-            set {_tags = value; Recipe.Tags = value.ToList(); 
-                OnPropertyChanged(nameof(Tags)); }
+            get { return _categories; }   
+            set {_categories = value;
+
+                    var temp = value.Select(p => p.Name).ToList(); 
+                Recipe.Categories = temp;
+                OnPropertyChanged(nameof(Categories)); }
         }
         public ObservableCollection<Ingredient> Ingredients
         {
@@ -117,16 +120,16 @@ namespace Fork
         public bool HasChanged { get; set; } = false;
         public bool NameHasChanged { get; set; } = false;
         public int BufferThickness { get; set; } = 20;
-        public BitmapImage Picture 
+        public bool IsSelected { get; set; }
+        public BitmapImage? Picture 
         { 
-            get { return picture; }  
-            set
-            {
-                picture = value;
-                OnPropertyChanged(nameof(Picture));
-            }
+            get { return Recipe.ImageFilePath == null ? null : new BitmapImage(new Uri(Recipe.ImageFilePath)); }  
         }
-        public string ImagePath { get; set; }
+        public List<Category> PossibleCateogories
+        {
+            get { return _possibleCategories; }
+            set { _possibleCategories = value; OnPropertyChanged(nameof(PossibleCateogories)); }
+        }
 
     #endregion
 
@@ -139,10 +142,16 @@ namespace Fork
         public ICommand CommentRecipeComamnd { get; set; }
         public ICommand AddPictureCommand { get; set; }
         public ICommand SaveEditedRecipeCommand { get; set; }
+        public ICommand RecipeSelectedCommand { get; set; }
+        public ICommand AddCategoryCommand { get; set; }
+        public ICommand RemoveCategoryCommand { get; set; }
+        public ICommand CreateCategoryCommand { get; set; }
 
-    #endregion
+        public static event EventHandler<ListItemSelectedEventArgs>? ItemSelected;
 
-    #region Constructor
+        #endregion
+
+        #region Constructor
 
         public RecipeViewModel(Recipe recipe)
         {
@@ -151,15 +160,11 @@ namespace Fork
             Serves = recipe.Serves;
             Procedure = new ObservableCollection<string>(recipe.Procedure);
             Notes = new ObservableCollection<string>(recipe.Notes);
-            Tags = new ObservableCollection<string>(recipe.Tags);
+            Categories = new ObservableCollection<CategoryViewModel>(CategoryViewModel.GetViewModels(recipe.Categories));
             Ingredients = new ObservableCollection<Ingredient>(recipe.Ingredients);
             CookInstances = new ObservableCollection<CookInstance>(recipe.CookInstances);
             Description = recipe.Description;
 
-            if (recipe.ImageFilePath != null)
-            {
-                picture = new BitmapImage(new Uri(recipe.ImageFilePath));
-            }
             CalculateAverageValues();
 
             AddToMealPrepCommand = new RelayCommand(() => AddToMealPrep());
@@ -169,7 +174,15 @@ namespace Fork
             CommentRecipeComamnd = new RelayCommand(() => CommentRecipe());
             AddPictureCommand = new RelayCommand(() => AddPicture());
             SaveEditedRecipeCommand = new RelayCommand(() => SaveEditedRecipe());
+            RecipeSelectedCommand = new RelayCommand(() => SelectRecipe());
+            AddCategoryCommand = new DelegateCommand((param) => AddCategory(param));
+            RemoveCategoryCommand = new DelegateCommand((param) => RemoveCategory(param));
         }
+
+
+        // temporaty constructor. This allows the instance to be generated for add category view model
+        // will replace this when a global static operator and data holder (overton?) is made to pull
+        // the displayed data from
 
     #endregion
 
@@ -215,7 +228,7 @@ namespace Fork
 
         private void PrintRecipe()
         {
-
+            ForkGlobalData.SaveAllCategoriesList();
         }
 
         private void EditRecipe()
@@ -224,6 +237,7 @@ namespace Fork
             WindowViewModel windowViewModel = new(editRecipeWindowControl);
             editRecipeWindowControl.DataContext = windowViewModel;
             editRecipeWindowControl.ShowDialog();
+            CalculateAverageValues();
         }
 
         private void CommentRecipe()
@@ -242,6 +256,7 @@ namespace Fork
                 CookInstances.Add(cookInstance);
                 Recipe.CookInstances.Add(cookInstance);
             }
+            CalculateAverageValues();
         }
 
         /// <summary>
@@ -251,11 +266,11 @@ namespace Fork
         private void AddPicture(string filepath = null)
         {
             bool deleteOld = false;
-            string oldPath = ImagePath;
+            string oldPath = Recipe.ImageFilePath;
             // click on image pane
             if (filepath == null)
             {
-                string filterString = string.Join(";", ForkGlobalSettings.AcceptedPictureFormats.Select(p => "*" + p));
+                string filterString = string.Join(";", ForkGlobalData.AcceptedPictureFormats.Select(p => "*" + p));
                 Microsoft.Win32.OpenFileDialog openFileDialog1 = new Microsoft.Win32.OpenFileDialog
                 {
                     Filter = "Food Pictures(" + filterString + ")|" + filterString,
@@ -273,7 +288,7 @@ namespace Fork
                 return; // if nothing was selected from the dialog box
 
             // If image already exists, display popup to confirm overriding it
-            if (!ImagePath.Contains("TransparentPlus"))
+            if (!Recipe.ImageFilePath.Contains("TransparentPlus"))
             {
                 if (MessageBox.Show("Replace Current Picture?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
                     return;
@@ -282,8 +297,8 @@ namespace Fork
             }
 
             string newPath = Path.Combine(Recipe.GetImageFolderPath(), Recipe.Name + "." + filepath.Split(".").Last());
-            ImagePath = newPath;
-            Picture = new BitmapImage(new Uri(filepath));
+            Recipe.ImageFilePath = newPath;
+            OnPropertyChanged(nameof(Picture));
 
             if (deleteOld)
                 File.Delete(oldPath);
@@ -294,9 +309,69 @@ namespace Fork
         private void SaveEditedRecipe()
         {
             HasChanged = true;
+            SaveRecipeVMChanges();
         }
 
+        private void SelectRecipe()
+        {
+            IsSelected = true;
+            ListItemSelectedEventArgs e = new ListItemSelectedEventArgs(Name);
+            ItemSelected?.Invoke(this, e);
+        }
 
+        private void AddCategory(object param)
+        {
+            Category? category = (Category)param;
+            if (category != null )
+            {
+                Categories.Add(new CategoryViewModel(category));
+                Recipe.Categories.Add(category.Name);
+            }
+            else
+            {
+                MessageBox.Show("Unexpected error when adding category to recipe");
+            }
+        }
+
+        private void RemoveCategory(object param)
+        {
+            Category? category = (Category)param;
+            if (category != null)
+            {
+                if (ForkGlobalData.AllCategories.Any(p => p.Equals(category)))
+                {
+                    if (Categories.Any(p => p.Name.Equals(category.Name)))
+                    {
+                        Categories.Remove(Categories.First(p => p.Category == category));
+                        Recipe.Categories.Remove(Recipe.Categories.First(p => p == category.Name));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Recipe is not in this category");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Category to remove does not exist");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Category to remove not selected");
+            }
+        }
+
+        private void OpenCategoryWindow()
+        {
+            EditCategoriesViewModel editCategoriesViewModel = new EditCategoriesViewModel();
+            AddCategoryWindowControl addCategoryWindowControl = new(editCategoriesViewModel);
+            WindowViewModel windowViewModel = new(addCategoryWindowControl);
+            addCategoryWindowControl.DataContext = windowViewModel;
+            addCategoryWindowControl.ShowDialog();
+            _possibleCategories = ForkGlobalData.AllCategories;
+            OnPropertyChanged(nameof(PossibleCateogories));
+            
+        }
 
         #endregion
 
@@ -308,10 +383,11 @@ namespace Fork
             if (NameHasChanged)
             {
                 // delete current xml
-                string filepath = Path.Combine(Recipe.GetRecipeFolderPath(), Recipe.Name);
-                if (!File.Exists(filepath))
+                string filepath = Path.Combine(Recipe.GetRecipeFolderPath(), Recipe.Name + ".xml");
+                bool exists = File.Exists(filepath);
+                if (File.Exists(filepath))
                 {
-                    File.Delete(filepath + ".xml");
+                    File.Delete(filepath);
                 }
                 Recipe.Name = Name;
             }

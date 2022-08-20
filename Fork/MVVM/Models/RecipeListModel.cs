@@ -16,12 +16,12 @@ namespace Fork
 
         public RecipeListModel() 
         {
-            RecipeList = new ObservableCollection<RecipeListItemViewModel>
+            RecipeList = new ObservableCollection<RecipeViewModel>
             {
-                new RecipeListItemModel(),
-                new RecipeListItemModel(),
-                new RecipeListItemModel(),
-                new RecipeListItemModel()
+                new RecipeViewModel(ModelDataInjector.GetRecipe()),
+                new RecipeViewModel(ModelDataInjector.GetRecipe()),
+                new RecipeViewModel(ModelDataInjector.GetRecipe()),
+                new RecipeViewModel(ModelDataInjector.GetRecipe()),
             };
         }
 

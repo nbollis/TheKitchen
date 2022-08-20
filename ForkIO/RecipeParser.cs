@@ -16,11 +16,11 @@ namespace ForkIO
 
             foreach (var path in filepaths)
             {
-                TryParseRecipe(path, out Recipe recipe, out string error);
+                TryParseRecipe(path, out Recipe recipe, out errors);
 
-                if (error != null)
+                if (errors != null)
                 {
-                    errors.Add(error);
+                    errors.AddRange(errors);
                 }
                 if (recipe != null)
                 {
@@ -39,33 +39,34 @@ namespace ForkIO
                 throw new ArgumentException("ParseRecipes Failed: single path parameter");
         }
 
-        public static Recipe ParseRecipe(string filepath, FileType filetype)
+        public static bool TryParseRecipe(string filepath, out Recipe recipe, out List<string> errors)
         {
-            switch (filetype)
-            {
-                case FileType.OneNoteTxt:
-                    return ParseRecipeFromOneNoteTxt(filepath);
-                    break;
-                case FileType.XmlSaved:
-                    return XmlReaderWriter.ReadFromXmlFile<Recipe>(filepath);
-                    break;
-            }
-
-            throw new ArgumentException("Failed to parse recipe");
-        }
-
-        public static bool TryParseRecipe(string filepath, out Recipe recipe, out string error)
-        {
+            errors = new List<string>();
+            recipe = null;
             try
             {
-                recipe = ParseRecipe(filepath, ParseFileType(filepath));
-                error = null;
+                switch (ParseFileType(filepath))
+                {
+                    case FileType.OneNoteTxt:
+                        recipe = ParseRecipeFromOneNoteTxt(filepath, out errors);
+                        break;
+
+                    case FileType.XmlSaved:
+                        recipe = XmlReaderWriter.ReadFromXmlFile<Recipe>(filepath);
+                        errors = null;
+                        break;
+
+                    case FileType.pdf:
+                        recipe = ParseRecipeFromGeneralText(filepath, out errors);
+                        break;
+                }
+
+                
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 recipe = null;
-                error = e.Message;
                 return false;
             }
         }
@@ -74,8 +75,10 @@ namespace ForkIO
 
         #region Specific Parsing Methods
 
-        public static Recipe ParseRecipeFromOneNoteTxt(string filepath)
+        // TODO: Refactor this to use the better recipe constructor
+        public static Recipe ParseRecipeFromOneNoteTxt(string filepath, out List<string> errors)
         {
+            errors = new List<string>();
             Recipe recipe = new Recipe();
             List<string> lines = File.ReadAllLines(filepath).Where(p => p.Length > 4 && p != null).ToList();
 
@@ -105,9 +108,15 @@ namespace ForkIO
 
             for (int i = ingredientsIndex + 1; i < procedureIndex; i++)
             {
-                Ingredient newIngredient = Ingredient.ParseIngredientsFromText(lines[i]);
-                if (newIngredient != null)
-                    recipe.Ingredients.Add(newIngredient);
+                if (Ingredient.TryParseIngredientFromTxt(lines[i], out Ingredient ingredient, out string error))
+                {
+                    recipe.Ingredients.Add(ingredient);
+                }
+                else
+                {
+                    recipe.Ingredients.Add(new Ingredient());
+                    errors.Add(error);
+                }
             }
 
             for (int i = procedureIndex + 1; i < cookedIndex; i++)
@@ -117,10 +126,27 @@ namespace ForkIO
 
             for (int i = cookedIndex + 1; i < lines.Count; i++)
             {
-                recipe.CookInstances.Add(new CookInstance(lines[i]));
+                if (CookInstance.TryParseCookInstanceFromTxt(lines[i], out CookInstance cookInstance, out string error))
+                {
+                    recipe.CookInstances.Add(cookInstance);
+                }
+                else
+                {
+                    recipe.CookInstances.Add(new CookInstance());
+                    errors.Add(error);
+                }
             }
 
             recipe.ImageFilePath = Path.Combine(Recipe.GetImageFolderPath(), @"TransparentPlus.png");
+
+            return recipe;
+        }
+
+        public static Recipe ParseRecipeFromGeneralText(string filepath, out List<string> errors)
+        {
+            Recipe recipe = new Recipe();
+            errors = new List<string>();
+            string text = PdfExtracter.pdfText(filepath);
 
             return recipe;
         }
@@ -136,6 +162,8 @@ namespace ForkIO
                     return FileType.OneNoteTxt; break;
                 case ".xml":
                     return FileType.XmlSaved; break;
+                case ".pdf":
+                    return FileType.pdf; break;
             }
 
             throw new ArgumentException($"File type {extension} not yet supported");

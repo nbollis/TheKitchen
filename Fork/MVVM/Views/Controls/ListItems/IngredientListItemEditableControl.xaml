@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Fork.IngredientListItemEditableControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Fork"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="300">
+   
+      
+                        
+        <!-- content -->
+        <Border x:Name="background" 
+                BorderThickness="2"  d:DataContext="{x:Static local:IngredientModel.Instance}">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                 <TextBox Style="{StaticResource SmallTextBox}" Text="{Binding Amount}" HorizontalContentAlignment="Center"
+                        PreviewTextInput="TextBox_PreviewTextInput" Margin="-3 0 0 0 " MinWidth="20"/>
+                <TextBox Style="{StaticResource SmallTextBox}" Text="{Binding UnitString}" Margin="3 0 0 0" MinWidth="76" />
+                <TextBox Style="{StaticResource SmallTextBox}" Text="{Binding Name}" Margin="3 0 0 0" MinWidth="20" />
+                <TextBox Style="{StaticResource SmallTextBox}" Text="{Binding How}" Margin="3 0 0 0" MinWidth="20" />
+            </StackPanel>
+        </Border>
+      
+</UserControl>

@@ -16,6 +16,7 @@ namespace Fork
         public RecipeModel() : base(ModelDataInjector.GetRecipe())
         {
             Ingredient = Recipe.Ingredients.First();
+            Categories.Add(new CategoryViewModel("Indian"));
         }
 
     }

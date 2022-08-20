@@ -13,11 +13,8 @@ namespace Fork
         /// </summary>
         public static RecipeListItemModel Instance => new RecipeListItemModel();
 
-        public RecipeListItemModel() : base(ModelDataInjector.GetRecipe())
+        public RecipeListItemModel() : base(new RecipeViewModel(ModelDataInjector.GetRecipe()))
         {
-            Tags.Add(new TagModel());
-            Tags.Add(new TagModel());
-            Tags.Add(new TagModel());
             IsSelected = false;
         }
     }

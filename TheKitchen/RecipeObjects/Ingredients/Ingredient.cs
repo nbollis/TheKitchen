@@ -31,7 +31,23 @@ namespace TheKitchen
             WholeLine = ingredientsline;
         }
 
-        public static Ingredient ParseIngredientsFromText(string ingredientLine)
+
+        public static bool TryParseIngredientFromTxt(string ingredientLine, out Ingredient ingredient, out string error)
+        {
+            try
+            {
+                ingredient = ParseIngredientsFromText(ingredientLine);
+                error = null;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ingredient = null;
+                error =$"Ingredient failed to Parse due to {ex.Message}";
+                return false;
+            }
+        }
+        private static Ingredient ParseIngredientsFromText(string ingredientLine)
         {
             if (ingredientLine.Length < 5)
                 return null;

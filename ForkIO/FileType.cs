@@ -10,6 +10,7 @@ namespace ForkIO
     {
         OneNoteTxt,
         XmlSaved,
+        pdf,
 
 
     }

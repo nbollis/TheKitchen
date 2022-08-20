@@ -17,7 +17,7 @@ namespace TheKitchen
         public int Serves { get; set; }
         public List<string> Procedure { get; set; }
         public List<string> Notes { get; set; }
-        public List<string> Tags { get; set; }
+        public List<string> Categories { get; set; }
         public List<Ingredient> Ingredients { get; set; }
         public List<CookInstance> CookInstances { get; set; }
         public string Description { get; set; }
@@ -34,8 +34,21 @@ namespace TheKitchen
             Notes = new List<string>();
             Ingredients = new List<Ingredient>();
             CookInstances = new List<CookInstance>();
-            Tags = new List<string>();
+            Categories = new List<string>();
             Changed = true;
+        }
+
+        public Recipe(string name, int serves, List<string> procedure, List<string> notes, List<string> tags, 
+            List<Ingredient> ingredients, List<CookInstance> cookInstances, string description = "")
+        {
+            Name = name;
+            Serves = serves;
+            Procedure = procedure;
+            Notes = notes;
+            Categories = tags;
+            Ingredients = ingredients;
+            CookInstances = cookInstances;
+            Description = description;
         }
 
         #region Saving 
@@ -47,7 +60,6 @@ namespace TheKitchen
         public void SaveRecipe()
         {
             string filepath = Path.Combine(GetRecipeFolderPath(), Name + ".xml");
-            bool exists = File.Exists(filepath);
             if (!File.Exists(filepath))
             {
                 File.Create(filepath).Close();
@@ -86,7 +98,6 @@ namespace TheKitchen
         public static void SaveRecipe(Recipe recipe)
         {
             string filepath = Path.Combine(GetRecipeFolderPath(), recipe.Name + ".xml");
-            bool exists = File.Exists(filepath);
             if (!File.Exists(filepath))
             {
                 File.Create(filepath).Close();

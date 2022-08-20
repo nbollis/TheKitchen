@@ -15,7 +15,7 @@ namespace Fork
     {
     #region Private Properties
 
-        private ObservableCollection<Recipe> _Recipes;
+        private ObservableCollection<RecipeViewModel> _Recipes;
         private RecipeListViewModel _RecipeListViewModel;
         private RecipeViewModel _RecipeViewModel;
 
@@ -23,7 +23,7 @@ namespace Fork
 
     #region Public Properties
 
-        public ObservableCollection<Recipe> Recipes
+        public ObservableCollection<RecipeViewModel> Recipes
         {
             get { return _Recipes; }
             set
@@ -73,8 +73,14 @@ namespace Fork
         public RecipePageViewModel()
         {
             // Initialize Fields
-            _Recipes = new ObservableCollection<Recipe>(RecipeParser.ParseRecipes(Recipe.GetRecipeFolderPath(), out List<string> errors));
-            _RecipeListViewModel = new RecipeListViewModel(Recipes);
+            var recipes = new ObservableCollection<Recipe>(RecipeParser.ParseRecipes(Recipe.GetRecipeFolderPath(), out List<string> errors));
+            _Recipes = new();
+            foreach (var recipe in recipes)
+            {
+                _Recipes.Add(new RecipeViewModel(recipe));
+            }
+            
+            _RecipeListViewModel = new RecipeListViewModel(_Recipes);
 
 
             // Declare Commands
@@ -83,7 +89,7 @@ namespace Fork
             SearchCommand = new RelayCommand(() => Search());
             ChangeViewCommand = new RelayCommand(() => ChangeView());
             AddRecipeCommand = new RelayCommand(() => AddRecipe());
-            RecipeListItemViewModel.ItemSelected += RecipeSelected;
+            RecipeViewModel.ItemSelected += ListItemSelected;
         }
 
     #endregion
@@ -115,27 +121,32 @@ namespace Fork
             AddRecipeWindowControl addRecipeWindowControl = new(addRecipeViewModel);
             WindowViewModel windowViewModel = new(addRecipeWindowControl); 
             addRecipeWindowControl.DataContext = windowViewModel;
-            
-            RecipeListItemViewModel.ItemSelected -= RecipeSelected;
-            RecipeListItemViewModel.ItemSelected += addRecipeViewModel.RecipeSelected;
+
+            RecipeViewModel.ItemSelected -= ListItemSelected;
+            RecipeViewModel.ItemSelected += addRecipeViewModel.ListItemSelected;
             addRecipeWindowControl.ShowDialog();
 
-            if (addRecipeWindowControl.DialogResult == true)
+            if (addRecipeViewModel.RecipesToAdd.Any())
             {
-
+                foreach (RecipeViewModel recipe in addRecipeViewModel.RecipesToAdd)
+                {
+                    recipe.HasChanged = true;
+                    Recipes.Add(recipe);
+                    RecipeListViewModel.RecipeList.Add(recipe);
+                }
             }
 
-            RecipeListItemViewModel.ItemSelected -= addRecipeViewModel.RecipeSelected;
-            RecipeListItemViewModel.ItemSelected += RecipeSelected;
+            RecipeViewModel.ItemSelected -= addRecipeViewModel.ListItemSelected;
+            RecipeViewModel.ItemSelected += ListItemSelected;
         }
 
         /// <summary>
         /// Event when a Recipe is Selected
         /// </summary>
         /// <param name="obj"></param>
-        public void RecipeSelected(object obj, ListItemSelectedEventArgs e)
+        public void ListItemSelected(object obj, ListItemSelectedEventArgs e)
         {
-            Recipe recipe = Recipes.First(p => p.Name.Equals(e.Name));
+            RecipeViewModel recipe = Recipes.First(p => p.Name.Equals(e.Name));
             // make changes on the left side of the screen
             if (RecipeListViewModel.SelectedItem != null)
             {
@@ -148,10 +159,15 @@ namespace Fork
                 RecipeViewModel.SaveRecipeVMChanges();
 
             // make changes on the right side of the screen
-            RecipeViewModel = new RecipeViewModel(recipe);
+            RecipeViewModel = recipe;
         }
 
-    #endregion
+        public void ListItemSelected(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
 
         /// <summary>
         /// Event that occurs when the page closes
@@ -161,34 +177,12 @@ namespace Fork
             if (RecipeViewModel != null && RecipeViewModel.HasChanged)
                 RecipeViewModel.SaveRecipeVMChanges();
 
-            foreach (var recipe in Recipes.Where(p => p.Changed))
+            foreach (var recipe in Recipes.Where(p => p.HasChanged))
             {
-                Recipe.SaveRecipe(recipe);
+                Recipe.SaveRecipe(recipe.Recipe);
             }
         }
 
-
-    #region Private Helpers
-
-        /// <summary>
-        /// Saves the recipe and accounts for a potential name change
-        /// </summary>
-        private void SaveRecipeVMChanges()
-        {
-            if (RecipeViewModel.NameHasChanged)
-            {
-                // delete current xml
-                string filepath = Path.Combine(Recipe.GetRecipeFolderPath(), RecipeViewModel.Recipe.Name);
-                if (!File.Exists(filepath))
-                {
-                    File.Delete(filepath + ".xml");
-                }
-                RecipeViewModel.Recipe.Name = RecipeViewModel.Name;
-            }
-
-            RecipeViewModel.Recipe.SaveRecipe();
-        }
-
-    #endregion
+        
     }
 }

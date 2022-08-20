@@ -28,14 +28,6 @@ namespace TheKitchen
             set { ProductionTime = Converters.GetTimeSpan(value); }
         }
 
-
-        public CookInstance(string notes)
-        {
-            string[] list = notes.Split(':');
-            DateProduced = DateTime.Parse(list[0]);
-            Notes = list[1].Trim();
-        }
-
         public CookInstance() { }
         
         public CookInstance(int rating, string notes, TimeSpan productionTime)
@@ -44,6 +36,39 @@ namespace TheKitchen
             Notes = notes;
             ProductionTime = productionTime;
             DateProduced = DateTime.Now;
+        }
+
+        public static bool TryParseCookInstanceFromTxt(string cookInstanceLine, out CookInstance cookInstance, out string error)
+        {
+            try
+            {
+                cookInstance = ParseCookInstanceFronString(cookInstanceLine);
+                error = null;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                cookInstance = null;
+                error = $"Cook Instance failed to Parse due to {ex.Message}";
+                return false;
+            }
+        }
+
+        public static CookInstance ParseCookInstanceFronString(string cookInstanceLine)
+        {
+            CookInstance cookInstance = new();
+            string[] list = cookInstanceLine.Split(':');
+            cookInstance.DateProduced = DateTime.Parse(list[0]);
+            if (list.Length == 2)
+            {
+                cookInstance.Notes = list[1].Trim();
+            }
+            if (list.Length == 3)
+            {
+                cookInstance.Rating = int.Parse(list[1]);
+                cookInstance.Notes = list[2].Trim();
+            }
+            return cookInstance;
         }
 
         public override string ToString()

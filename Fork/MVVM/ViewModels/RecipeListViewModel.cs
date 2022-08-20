@@ -24,12 +24,13 @@ namespace Fork
         /// <summary>
         /// recipe list itesm for the list
         /// </summary>
-        public ObservableCollection<RecipeListItemViewModel> RecipeList { get; set; }
+        public ObservableCollection<RecipeViewModel> RecipeList { get; set; }
+
 
         /// <summary>
         /// The selected Recipe 
         /// </summary>
-        public RecipeListItemViewModel SelectedItem { get; set; }
+        public RecipeViewModel SelectedItem { get; set; }
 
         #endregion
 
@@ -41,20 +42,20 @@ namespace Fork
 
         #region Constructors
 
-        public RecipeListViewModel(IEnumerable<Recipe> recipes)
+        public RecipeListViewModel(ObservableCollection<RecipeViewModel> recipes)
         {
-            RecipeList = new ObservableCollection<RecipeListItemViewModel>();
-            foreach (var recipe in recipes)
-            {
-                RecipeList.Add(new RecipeListItemViewModel(recipe));
-            }
+            RecipeList = new ObservableCollection<RecipeViewModel>(recipes);
+            //foreach (var recipe in recipes)
+            //{
+            //    RecipeList.Add(new RecipeListItemViewModel(recipe));
+            //}
 
             RecipeSelectedCommand = new DelegateCommand(param => RecipeSelected(param));
         }
 
         public RecipeListViewModel()
         {
-            RecipeList = new ObservableCollection<RecipeListItemViewModel>();
+            RecipeList = new ObservableCollection<RecipeViewModel>();
         }
         #endregion
 

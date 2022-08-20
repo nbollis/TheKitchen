@@ -8,6 +8,8 @@ namespace Fork
 {
     public interface IListContainer
     {
-        void RecipeSelected(object obj, ListItemSelectedEventArgs e);
+        void ListItemSelected(object obj, ListItemSelectedEventArgs e);
+
+        void ListItemSelected(object obj);
     }
 }

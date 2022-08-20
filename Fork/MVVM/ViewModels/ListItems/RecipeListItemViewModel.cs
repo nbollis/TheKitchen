@@ -14,9 +14,8 @@ namespace Fork
     {
         #region Private
 
-        private string _name;
-        private ObservableCollection<TagViewModel> _tags;
-        private string imageFilePath;
+
+        private RecipeViewModel recipeViewModel;
 
         #endregion
 
@@ -24,20 +23,15 @@ namespace Fork
 
         public string Name
         {
-            get { return _name; }
-            set { _name = value; OnPropertyChanged(nameof(Name)); }
+            get { return recipeViewModel.Name; } 
         }
 
-        public ObservableCollection<TagViewModel> Tags
+        public RecipeViewModel RecipeViewModel
         {
-            get { return _tags; }
-            set { _tags = value; OnPropertyChanged(nameof(Tags)); }
+            get { return recipeViewModel; }
+            set { recipeViewModel = value; OnPropertyChanged(nameof(RecipeViewModel)); }
         }
 
-        public BitmapImage Picture 
-        {
-            get { return new BitmapImage(new Uri(imageFilePath)); }  
-        }
         public bool IsSelected { get; set; }   
 
         #endregion
@@ -58,16 +52,10 @@ namespace Fork
         /// Constructor for real time data
         /// </summary>
         /// <param name="recipe"></param>
-        public RecipeListItemViewModel(Recipe recipe)
+        public RecipeListItemViewModel(RecipeViewModel recipe)
         {
-            _name = recipe.Name;
+            RecipeViewModel = recipe;
             IsSelected = false;
-            Tags = new ObservableCollection<TagViewModel>();
-            imageFilePath = recipe.ImageFilePath;
-            foreach (var tags in recipe.Tags)
-            {
-                Tags.Add(new TagViewModel());
-            }
 
             OpenRecipeCommand = new RelayCommand(OpenRecipe);
             RecipeSelectedCommand = new RelayCommand(() => SelectRecipe());
@@ -78,8 +66,10 @@ namespace Fork
         /// </summary>
         public RecipeListItemViewModel()
         {
-            Name = "Tacos";
-            Tags = new ObservableCollection<TagViewModel>();
+            RecipeViewModel = new(ModelDataInjector.GetRecipe());
+
+            OpenRecipeCommand = new RelayCommand(OpenRecipe);
+            RecipeSelectedCommand = new RelayCommand(() => SelectRecipe());
         }
 
         #endregion
@@ -94,7 +84,7 @@ namespace Fork
         public void SelectRecipe()
         {
             IsSelected = true;
-            ListItemSelectedEventArgs e = new ListItemSelectedEventArgs(Name); 
+            ListItemSelectedEventArgs e = new ListItemSelectedEventArgs(RecipeViewModel.Name); 
             ItemSelected?.Invoke(this, e);
         }
 
