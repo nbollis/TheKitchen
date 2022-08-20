@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\Editable\**" />
+    <EmbeddedResource Remove="ViewModels\Editable\**" />
+    <None Remove="ViewModels\Editable\**" />
+    <Page Remove="ViewModels\Editable\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Fonts\fontawesome-webfont.ttf" />
     <None Remove="Fonts\Lato-Black.ttf" />
     <None Remove="Fonts\Lato-BlackItalic.ttf" />
@@ -106,18 +113,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="MVVM\Views\Controls\RecipeListControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\Views\Controls\ListItems\RecipeListItemControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="MVVM\Views\Controls\TagControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <Page Update="MainWindow.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
@@ -138,19 +133,9 @@
     <Page Update="Styles\Windows.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-    <Page Update="MVVM\Views\Controls\RecipeListControl.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="MVVM\Views\Controls\ListItems\RecipeListItemControl.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
-    <Page Update="MVVM\Views\Controls\TagControl.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-    </Page>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="MVVM\ViewModels\Editable\" />
     <Folder Include="Data\" />
   </ItemGroup>
 
@@ -164,7 +149,7 @@
     <None Update="Images\emojicook.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="MVVM\Models\Data\OneChickenFajitaPasta.txt">
+    <None Update="Models\Data\OneChickenFajitaPasta.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
