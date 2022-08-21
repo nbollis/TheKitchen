@@ -65,14 +65,13 @@ namespace Fork
 
         private void CreateNewCategory()
         {
-            CategoryViewModel newCategory = new()
+            Category newCategory = new()
             {
-                Category = new Category(),
                 Name = "Default",
                 RGB = "#ffffff",
                 Description = "",
             };
-            allCategories.Add(newCategory);
+            allCategories.Add(new CategoryViewModel(newCategory));
             ListItemSelected(newCategory.Name);
             OnPropertyChanged(nameof(AllCategories));
         }

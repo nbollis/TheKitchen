@@ -11,12 +11,9 @@ namespace Fork
         public static CategoryModel Instance => new CategoryModel();
 
 
-        public CategoryModel() : base()
+        public CategoryModel() : base(ForkGlobalData.AllCategories.First())
         {
-            Category = ForkGlobalData.AllCategories.First();
-            Name = Category.Name;
-            Description = Category.Description;
-            RGB = Category.RGB;
+
         }
     }
 }

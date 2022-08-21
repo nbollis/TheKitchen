@@ -18,11 +18,15 @@ namespace Fork
         private string rGB;
         private string categoryDescription;
         private bool isSelected;
+        private Category category;
 
         #endregion
 
         #region Public Properties
-        public Category Category { get; set; }
+        public Category Category { 
+            get { return category; }
+            set { category = value; OnPropertyChanged(nameof(Category)); }
+        }
         public string Name
         {
             get { return categoryName; }
@@ -58,18 +62,6 @@ namespace Fork
         #endregion
 
         #region Constructor
-        public CategoryViewModel()
-        {
-
-        }
-
-        public CategoryViewModel(string category)
-        {
-            Category = ForkGlobalData.AllCategories.First(p => p.Name == category);
-            categoryName = Category.Name;
-            categoryDescription = Category.Description;
-            rGB = Category.RGB;
-        }
 
         public CategoryViewModel(Category category, IListContainer ancestor = null)
         {
@@ -96,10 +88,10 @@ namespace Fork
         /// </summary>
         /// <param name="categories"></param>
         /// <returns></returns>
-        public static ObservableCollection<CategoryViewModel> GetViewModels(List<string> categories)
+        public static ObservableCollection<CategoryViewModel> GetViewModels(List<Category> categories)
         {
             ObservableCollection<CategoryViewModel> viewModels = new ObservableCollection<CategoryViewModel>();
-            foreach (string category in categories)
+            foreach (Category category in categories)
             {
                 viewModels.Add(new CategoryViewModel(category));
             }

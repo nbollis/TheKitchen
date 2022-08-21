@@ -38,7 +38,11 @@ namespace Fork
 
         #region Public Properties
 
-        public Recipe Recipe { get; set; }
+        public Recipe Recipe
+        {
+            get { return recipe; }
+            set { recipe = value; OnPropertyChanged(nameof(Recipe));}
+        }
         public string Name
         {
             get { return name; }
@@ -75,9 +79,7 @@ namespace Fork
         {
             get { return _categories; }   
             set {_categories = value;
-
-                    var temp = value.Select(p => p.Name).ToList(); 
-                Recipe.Categories = temp;
+                Recipe.Categories = value.Select(p => p.Category).ToList();
                 OnPropertyChanged(nameof(Categories)); }
         }
         public ObservableCollection<Ingredient> Ingredients
@@ -168,16 +170,17 @@ namespace Fork
 
             CalculateAverageValues();
 
-            AddToMealPrepCommand = new RelayCommand(() => AddToMealPrep());
-            DownloadRecipeCommand = new RelayCommand(() => DownloadRecipe());
-            PrintRecipeCommand = new RelayCommand(() => PrintRecipe());
-            EditRecipeCommand = new RelayCommand(() => EditRecipe());
-            CommentRecipeComamnd = new RelayCommand(() => CommentRecipe());
+            AddToMealPrepCommand = new RelayCommand(AddToMealPrep);
+            DownloadRecipeCommand = new RelayCommand(DownloadRecipe);
+            PrintRecipeCommand = new RelayCommand(PrintRecipe);
+            EditRecipeCommand = new RelayCommand(EditRecipe);
+            CommentRecipeComamnd = new RelayCommand(CommentRecipe);
             AddPictureCommand = new RelayCommand(() => AddPicture());
-            SaveEditedRecipeCommand = new RelayCommand(() => SaveEditedRecipe());
-            RecipeSelectedCommand = new RelayCommand(() => SelectRecipe());
+            SaveEditedRecipeCommand = new RelayCommand(SaveEditedRecipe);
+            RecipeSelectedCommand = new RelayCommand(SelectRecipe);
             AddCategoryCommand = new DelegateCommand((param) => AddCategory(param));
             RemoveCategoryCommand = new DelegateCommand((param) => RemoveCategory(param));
+            CreateCategoryCommand = new RelayCommand(OpenCategoryWindow);
         }
 
         #endregion
@@ -321,7 +324,7 @@ namespace Fork
             if (category != null )
             {
                 Categories.Add(new CategoryViewModel(category));
-                Recipe.Categories.Add(category.Name);
+                Recipe.Categories.Add(category);
             }
             else
             {
@@ -339,7 +342,7 @@ namespace Fork
                     if (Categories.Any(p => p.Name.Equals(category.Name)))
                     {
                         Categories.Remove(Categories.First(p => p.Category == category));
-                        Recipe.Categories.Remove(Recipe.Categories.First(p => p == category.Name));
+                        Recipe.Categories.Remove(Recipe.Categories.First(p => p == category));
                     }
                     else
                     {
@@ -366,7 +369,6 @@ namespace Fork
             addCategoryWindowView.ShowDialog();
             _possibleCategories = ForkGlobalData.AllCategories;
             OnPropertyChanged(nameof(PossibleCateogories));
-            
         }
 
         #endregion

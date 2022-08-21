@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using static Fork.DI;
 
 namespace Fork
 {
@@ -178,7 +179,7 @@ namespace Fork
             mWindow = window;
             string filepath = Path.Join(ApplicationPath, @"Images\emojicook.png");
             icon = new BitmapImage(new Uri(filepath));
-            ApplicationViewModel = new();
+            ApplicationViewModel = ViewModelApplication;
 
             // Listen out for the window resizing to let whoever is attached to know to adjust
             mWindow.StateChanged += (sender, e) =>
