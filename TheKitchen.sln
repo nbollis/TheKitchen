@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fork", "Fork\Fork.csproj", "{B43447ED-794D-41B9-B177-BB834ED836EC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForkIO", "ForkIO\ForkIO.csproj", "{4C04E4F6-FEF2-4B27-83DA-B0DDD4C50AF5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForkCore", "ForkCore\ForkCore.csproj", "{893CF09C-2021-4A91-BF36-371E4D53FCDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForkCore", "ForkCore\ForkCore.csproj", "{893CF09C-2021-4A91-BF36-371E4D53FCDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{B43447ED-794D-41B9-B177-BB834ED836EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B43447ED-794D-41B9-B177-BB834ED836EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B43447ED-794D-41B9-B177-BB834ED836EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C04E4F6-FEF2-4B27-83DA-B0DDD4C50AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C04E4F6-FEF2-4B27-83DA-B0DDD4C50AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C04E4F6-FEF2-4B27-83DA-B0DDD4C50AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C04E4F6-FEF2-4B27-83DA-B0DDD4C50AF5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{893CF09C-2021-4A91-BF36-371E4D53FCDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{893CF09C-2021-4A91-BF36-371E4D53FCDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{893CF09C-2021-4A91-BF36-371E4D53FCDB}.Release|Any CPU.ActiveCfg = Release|Any CPU

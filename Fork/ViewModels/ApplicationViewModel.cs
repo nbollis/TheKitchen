@@ -26,8 +26,7 @@ namespace Fork
         public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Recipes;
 
         public BaseViewModel CurrentPageViewModel { get; set; }
-
-        public ObservableCollection<TabItem> AllTabs { get; set; }
+        
 
         #endregion
 
@@ -46,8 +45,8 @@ namespace Fork
         public ApplicationViewModel()
         {
             // value initialization
-            //CurrentPage = ApplicationPage.Recipes;
-            AllTabs = new ObservableCollection<TabItem>();
+            CurrentPage = ApplicationPage.Recipes;
+            
 
 
 

@@ -91,10 +91,6 @@ namespace Fork
         #endregion
 
 
-
-
-
-
         /// <summary>
         /// Creates category view modesl from a list of strings representing their names
         /// </summary>

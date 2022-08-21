@@ -17,7 +17,7 @@ namespace Fork
     public class RecipeViewModel : BaseViewModel, IFileDragDropTarget
     {
 
-    #region Private Members
+        #region Private Members
 
         private string name;
         private int _serves;
@@ -34,11 +34,11 @@ namespace Fork
         private Recipe recipe;
     
 
-    #endregion
+        #endregion
 
-    #region Public Properties
+        #region Public Properties
 
-    public Recipe Recipe { get; set; }
+        public Recipe Recipe { get; set; }
         public string Name
         {
             get { return name; }
@@ -132,25 +132,25 @@ namespace Fork
             set { _possibleCategories = value; OnPropertyChanged(nameof(PossibleCateogories)); }
         }
 
-    #endregion
-
-    #region Commands
-
-        public ICommand AddToMealPrepCommand { get; set; }
-        public ICommand DownloadRecipeCommand { get; set; }
-        public ICommand PrintRecipeCommand { get; set; }
-        public ICommand EditRecipeCommand { get; set; }
-        public ICommand CommentRecipeComamnd { get; set; }
-        public ICommand AddPictureCommand { get; set; }
-        public ICommand SaveEditedRecipeCommand { get; set; }
-        public ICommand RecipeSelectedCommand { get; set; }
-        public ICommand AddCategoryCommand { get; set; }
-        public ICommand RemoveCategoryCommand { get; set; }
-        public ICommand CreateCategoryCommand { get; set; }
-
-        public static event EventHandler<ListItemSelectedEventArgs>? ItemSelected;
-
         #endregion
+
+        #region Commands
+
+            public ICommand AddToMealPrepCommand { get; set; }
+            public ICommand DownloadRecipeCommand { get; set; }
+            public ICommand PrintRecipeCommand { get; set; }
+            public ICommand EditRecipeCommand { get; set; }
+            public ICommand CommentRecipeComamnd { get; set; }
+            public ICommand AddPictureCommand { get; set; }
+            public ICommand SaveEditedRecipeCommand { get; set; }
+            public ICommand RecipeSelectedCommand { get; set; }
+            public ICommand AddCategoryCommand { get; set; }
+            public ICommand RemoveCategoryCommand { get; set; }
+            public ICommand CreateCategoryCommand { get; set; }
+
+            public static event EventHandler<ListItemSelectedEventArgs>? ItemSelected;
+
+            #endregion
 
         #region Constructor
 
@@ -180,12 +180,7 @@ namespace Fork
             RemoveCategoryCommand = new DelegateCommand((param) => RemoveCategory(param));
         }
 
-
-        // temporaty constructor. This allows the instance to be generated for add category view model
-        // will replace this when a global static operator and data holder (overton?) is made to pull
-        // the displayed data from
-
-    #endregion
+        #endregion
 
         public void OnFileDrop(string[] filepaths)
         {

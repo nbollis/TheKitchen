@@ -9,7 +9,7 @@
     <Border Padding="3"
             CornerRadius="15"
             Background="{Binding RGB}"
-            d:DataContext="{x:Static local:CateogryModel.Instance}" >
+            d:DataContext="{x:Static local:CategoryModel.Instance}" >
 
         <Border.InputBindings>
             <MouseBinding MouseAction="LeftClick" Command="{Binding ItemSelectedCommand}" CommandParameter="{Binding Name}" />
