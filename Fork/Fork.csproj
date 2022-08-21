@@ -50,6 +50,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ForkCore\ForkCore.csproj" />
+    <ProjectReference Include="..\ForkDataHandling\ForkDataHandling.csproj" />
     <ProjectReference Include="..\TheKitchen\TheKitchen.csproj" />
   </ItemGroup>
 

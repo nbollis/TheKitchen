@@ -1,38 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Text.RegularExpressions;
 using TheKitchen;
 
-namespace Fork
+namespace ForkDataHandling
 {
-    public class ForkGlobalData : BaseViewModel, IListContainer
+    public class ForkGlobalData 
     {
         #region Static Properties
 
         public static List<string> AcceptedPictureFormats = new List<string> { ".jpg", ".png", ".jpeg" };
         public static List<string> AcceptedRecipeUploadFormats = new List<string> { ".txt" };
-
+        
         public static List<Category> AllCategories { get; set; }
-
+        public static List<Recipe> AllRecipes { get; set; }
+        public static Dictionary<string, Recipe> AllRecipesDict { get; set; }
         #endregion
 
 
         static ForkGlobalData()
         {
             LoadAllCategoriesList();
+            LoadAllRecipes();
         }
 
-        public static ForkGlobalData Instance => new ForkGlobalData();
-        public ForkGlobalData() 
-        { 
-            
-        }
+        #region Singleton for the view to reference
+
+        public ForkGlobalData Instance => new ForkGlobalData();
+        public ForkGlobalData() {}
+
+        #endregion
 
 
         #region IO of static data
@@ -51,6 +46,11 @@ namespace Fork
                 File.Create(filepath).Close();
             XmlReaderWriter.WriteToXmlFile(filepath, AllCategories);
         }
+        private static void LoadAllRecipes()
+        {
+            AllRecipes = RecipeParser.ParseRecipes(Recipe.GetRecipeFolderPath(), out List<string> errors);
+            AllRecipesDict = AllRecipes.ToDictionary(p => p.Name, p => p);
+        }
 
         #endregion
 
@@ -66,15 +66,7 @@ namespace Fork
 
         
 
-        public void ListItemSelected(object obj)
-        {
-            
-        }
 
-        public void ListItemSelected(object obj, ListItemSelectedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
 
         
 

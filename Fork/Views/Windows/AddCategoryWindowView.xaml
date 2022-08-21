@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fork"
         xmlns:wpfx="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        xmlns:forkDataHandling="clr-namespace:ForkDataHandling;assembly=ForkDataHandling"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -112,7 +113,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <local:ForkGlobalData x:Key="dataSingleton" />
+        <forkDataHandling:ForkGlobalData x:Key="dataSingleton" />
     </Window.Resources>
 
     <!-- Adds basic support back -->

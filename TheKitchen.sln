@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fork", "Fork\Fork.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ForkCore", "ForkCore\ForkCore.csproj", "{893CF09C-2021-4A91-BF36-371E4D53FCDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForkDataHandling", "ForkDataHandling\ForkDataHandling.csproj", "{C34658D8-084C-4C56-B177-0C7463A93E29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{893CF09C-2021-4A91-BF36-371E4D53FCDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{893CF09C-2021-4A91-BF36-371E4D53FCDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{893CF09C-2021-4A91-BF36-371E4D53FCDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C34658D8-084C-4C56-B177-0C7463A93E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C34658D8-084C-4C56-B177-0C7463A93E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C34658D8-084C-4C56-B177-0C7463A93E29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C34658D8-084C-4C56-B177-0C7463A93E29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

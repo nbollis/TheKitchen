@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ForkDataHandling;
+using TheKitchen;
 using static Fork.DI;
 
 namespace Fork
@@ -26,7 +28,8 @@ namespace Fork
         public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Recipes;
 
         public BaseViewModel CurrentPageViewModel { get; set; }
-        
+        public ObservableCollection<RecipeViewModel> AllRecipeViewModels { get; set; }
+
 
         #endregion
 
@@ -46,9 +49,11 @@ namespace Fork
         {
             // value initialization
             CurrentPage = ApplicationPage.Recipes;
-            
-
-
+            AllRecipeViewModels = new ObservableCollection<RecipeViewModel>();
+            foreach (var recipe in ForkGlobalData.AllRecipes)
+            {
+                AllRecipeViewModels.Add(new RecipeViewModel(recipe));
+            }
 
             // command assignment
             OpenRecipesCommand = new RelayCommand(OpenRecipes);

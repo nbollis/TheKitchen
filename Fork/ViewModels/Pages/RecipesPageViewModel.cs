@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ForkDataHandling;
 using TheKitchen;
 using static Fork.DI;
 
@@ -75,15 +76,8 @@ namespace Fork
         public RecipesPageViewModel()
         {
             // Initialize Fields
-            var recipes = new ObservableCollection<Recipe>(RecipeParser.ParseRecipes(Recipe.GetRecipeFolderPath(), out List<string> errors));
-            _Recipes = new();
-            foreach (var recipe in recipes)
-            {
-                _Recipes.Add(new RecipeViewModel(recipe));
-            }
-            
+            _Recipes = ViewModelApplication.AllRecipeViewModels;
             _RecipeListViewModel = new RecipeListViewModel(_Recipes);
-
 
             // Declare Commands
             BackCommand = new RelayCommand(() => GoBack());
