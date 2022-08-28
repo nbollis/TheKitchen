@@ -32,5 +32,14 @@ namespace Fork
             Ingredient ingredient = recipe.Ingredients.First();
             return ingredient;
         }
+
+        public static MealPrep GetMealPrep()
+        {
+            MealPrep mealPrep = new MealPrep();
+            mealPrep.Recipes = new List<Recipe>() { GetRecipe(), GetRecipe(), GetRecipe() };
+            mealPrep.TimeToCook = new TimeSpan(2, 1, 4);
+            mealPrep.Notes = "No Notes";
+            return mealPrep;
+        }
     }
 }

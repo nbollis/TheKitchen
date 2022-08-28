@@ -13,6 +13,8 @@ namespace ForkDataHandling
         public static List<Category> AllCategories { get; set; }
         public static List<Recipe> AllRecipes { get; set; }
         public static Dictionary<string, Recipe> AllRecipesDict { get; set; }
+        public static List<MealPrep> AllMealPreps { get; set; }
+
         #endregion
 
 
@@ -20,6 +22,7 @@ namespace ForkDataHandling
         {
             LoadAllCategoriesList();
             LoadAllRecipes();
+            LoadAllMealPreps();
         }
 
         #region Singleton for the view to reference
@@ -50,6 +53,11 @@ namespace ForkDataHandling
         {
             AllRecipes = RecipeParser.ParseRecipes(Recipe.GetRecipeFolderPath(), out List<string> errors);
             AllRecipesDict = AllRecipes.ToDictionary(p => p.Name, p => p);
+        }
+
+        private static void LoadAllMealPreps()
+        {
+
         }
 
         #endregion

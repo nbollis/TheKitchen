@@ -206,7 +206,7 @@
 
                             <!-- procedure -->
                             <Expander Header="Procedure" IsExpanded="True" >
-                                <ItemsControl ItemsSource="{Binding Procedure}">
+                                <ItemsControl ItemsSource="{Binding Procedure.Procedures}">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <DockPanel DockPanel.Dock="Top"  >
@@ -217,7 +217,7 @@
                                                                           VerticalAlignment="Center" IsHitTestVisible="False">
                                                     <FlowDocument Style="{StaticResource ListWithWrap}" >
                                                         <Paragraph TextIndent="-10" Margin="10 0 0 0"  >
-                                                            <Run Text="{Binding Mode=OneWay}" />
+                                                            <Run Text="{Binding Procedure}" />
                                                         </Paragraph>
                                                     </FlowDocument>
                                                 </FlowDocumentScrollViewer>

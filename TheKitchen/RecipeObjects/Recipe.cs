@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UnitsNet;
@@ -10,12 +11,12 @@ using UnitsNet;
 
 namespace TheKitchen
 {
-    public class Recipe : IRecipe
+    public class Recipe
     {
         #region Public Properties
         public string Name { get; set; }
         public int Serves { get; set; }
-        public List<string> Procedure { get; set; }
+        public Procedure Procedure { get; set; }
         public List<string> Notes { get; set; }
         public List<Category> Categories { get; set; }
         public List<Ingredient> Ingredients { get; set; }
@@ -30,25 +31,11 @@ namespace TheKitchen
         #region Constructors
         public Recipe()
         {
-            Procedure = new List<string>();
             Notes = new List<string>();
             Ingredients = new List<Ingredient>();
             CookInstances = new List<CookInstance>();
             Categories = new List<Category>();
             Changed = true;
-        }
-
-        public Recipe(string name, int serves, List<string> procedure, List<string> notes, List<Category> tags, 
-            List<Ingredient> ingredients, List<CookInstance> cookInstances, string description = "")
-        {
-            Name = name;
-            Serves = serves;
-            Procedure = procedure;
-            Notes = notes;
-            Categories = tags;
-            Ingredients = ingredients;
-            CookInstances = cookInstances;
-            Description = description;
         }
 
         #region Saving 

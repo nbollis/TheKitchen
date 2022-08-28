@@ -7,7 +7,7 @@ using UnitsNet;
 
 namespace TheKitchen
 {
-    public class Ingredient 
+    public class Ingredient : IItem
     {
         public string Name { get; set; }
         public Enum Unit;

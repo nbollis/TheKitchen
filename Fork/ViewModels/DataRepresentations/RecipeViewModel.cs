@@ -22,7 +22,7 @@ namespace Fork
 
         private string name;
         private int _serves;
-        private ObservableCollection<string> _procedure;
+        private Procedure _procedure;
         private ObservableCollection<string> _notes;
         private ObservableCollection<CategoryViewModel> _categories;
         private ObservableCollection<Ingredient> _ingredients;
@@ -64,10 +64,10 @@ namespace Fork
             set { _serves = value; Recipe.Serves = value; 
                 OnPropertyChanged(nameof(Serves)); }
         }
-        public ObservableCollection<string> Procedure
+        public Procedure Procedure
         {
             get { return _procedure; }
-            set { _procedure = value; Recipe.Procedure = value.ToList(); 
+            set { _procedure = value; Recipe.Procedure = value; 
                 OnPropertyChanged(nameof(Procedure)); }
         }
         public ObservableCollection<string> Notes
@@ -162,7 +162,7 @@ namespace Fork
             Recipe = recipe;
             Name = recipe.Name;
             Serves = recipe.Serves;
-            Procedure = new ObservableCollection<string>(recipe.Procedure);
+            Procedure = recipe.Procedure;
             Notes = new ObservableCollection<string>(recipe.Notes);
             Categories = new ObservableCollection<CategoryViewModel>(CategoryViewModel.GetViewModels(recipe.Categories));
             Ingredients = new ObservableCollection<Ingredient>(recipe.Ingredients);

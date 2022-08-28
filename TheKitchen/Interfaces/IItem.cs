@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace TheKitchen
 {
-    public class IngredientList
+    public interface IItem
     {
-        public List<IngredientGroup> IngredientGroups { get; set; }
-
+        public string Name { get; set; }
+        public double Amount { get; set; }
     }
 }

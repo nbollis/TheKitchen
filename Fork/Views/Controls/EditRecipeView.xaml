@@ -77,14 +77,14 @@
 
             <!-- procedure -->
             <Expander Header="Procedure" IsExpanded="True" >
-                <ItemsControl ItemsSource="{Binding Procedure}" >
+                <ItemsControl ItemsSource="{Binding Procedure.Procedures}" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <RichTextBox BorderThickness="1" SpellCheck.IsEnabled="True" 
                                                  >
                                 <FlowDocument Style="{StaticResource ListWithWrap}"  >
                                     <Paragraph TextIndent="-20" Margin="20 0 0 0" LineHeight="12">
-                                        <Run Text="{Binding Mode=OneWay}" />
+                                        <Run Text="{Binding Procedure}" />
                                     </Paragraph>
                                 </FlowDocument>
                             </RichTextBox>

@@ -28,8 +28,8 @@ namespace Fork
         public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Recipes;
 
         public BaseViewModel CurrentPageViewModel { get; set; }
-        public ObservableCollection<RecipeViewModel> AllRecipeViewModels { get; set; }
-
+        public RecipesPageViewModel RecipesPageViewModel { get; set; }
+        public MealPrepPageViewModel MealPrepPageViewModel { get; set; }
 
         #endregion
 
@@ -49,11 +49,9 @@ namespace Fork
         {
             // value initialization
             CurrentPage = ApplicationPage.Recipes;
-            AllRecipeViewModels = new ObservableCollection<RecipeViewModel>();
-            foreach (var recipe in ForkGlobalData.AllRecipes)
-            {
-                AllRecipeViewModels.Add(new RecipeViewModel(recipe));
-            }
+            RecipesPageViewModel = new();
+            MealPrepPageViewModel = new();
+
 
             // command assignment
             OpenRecipesCommand = new RelayCommand(OpenRecipes);
@@ -72,7 +70,7 @@ namespace Fork
         /// </summary>
         private void OpenRecipes()
         {
-            ViewModelApplication.GoToPage(ApplicationPage.Recipes, new RecipesPageViewModel());
+            ViewModelApplication.GoToPage(ApplicationPage.Recipes, RecipesPageViewModel);
         }
 
         /// <summary>
@@ -80,7 +78,7 @@ namespace Fork
         /// </summary>
         private void OpenMealPrep()
         {
-            ViewModelApplication.GoToPage(ApplicationPage.MealPrep, new MealPrepPageViewModel());
+            ViewModelApplication.GoToPage(ApplicationPage.MealPrep, MealPrepPageViewModel);
         }
 
         /// <summary>

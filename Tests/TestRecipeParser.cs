@@ -3,7 +3,7 @@ using TheKitchen;
 using System.Collections.Generic;
 using System.IO;
 using System;
-using ForkIO;
+using ForkDataHandling;
 
 namespace Tests
 {
@@ -44,7 +44,7 @@ namespace Tests
             Assert.That(chixFajita.Serves, Is.EqualTo(4));
             Assert.That(chixFajita.Ingredients.Count, Is.EqualTo(14));
             Assert.That(chixFajita.Ingredients[0].Name, Is.EqualTo("oil"));
-            Assert.That(chixFajita.Procedure.Count, Is.EqualTo(7));
+            Assert.That(chixFajita.Procedure.Procedures.Count, Is.EqualTo(7));
             Assert.That(chixFajita.CookInstances.Count, Is.EqualTo(1));
             Assert.That(chixFajita.Description, Is.EqualTo(""));
 
@@ -52,7 +52,7 @@ namespace Tests
             Assert.That(xacuti.Serves, Is.EqualTo(4));
             Assert.That(xacuti.Ingredients.Count, Is.EqualTo(16));
             Assert.That(xacuti.Ingredients[0].Name, Is.EqualTo("vegetable oil"));
-            Assert.That(xacuti.Procedure.Count, Is.EqualTo(3));
+            Assert.That(xacuti.Procedure.Procedures.Count, Is.EqualTo(3));
             Assert.That(xacuti.CookInstances.Count, Is.EqualTo(0));
             Assert.That(xacuti.Description, Is.EqualTo(
                 "Pronounced 'shakooti', this Portuguese-inspired curry is also called 'sagoti', " +
@@ -63,7 +63,7 @@ namespace Tests
             Assert.That(couscous.Serves, Is.EqualTo(4));
             Assert.That(couscous.Ingredients.Count, Is.EqualTo(13));
             Assert.That(couscous.Ingredients[0].Name, Is.EqualTo("Potatoes"));
-            Assert.That(couscous.Procedure.Count, Is.EqualTo(5));
+            Assert.That(couscous.Procedure.Procedures.Count, Is.EqualTo(5));
             Assert.That(couscous.CookInstances.Count, Is.EqualTo(1));
             Assert.That(couscous.Description, Is.EqualTo(""));
         }
@@ -81,7 +81,7 @@ namespace Tests
             Assert.That(chixFajita.Serves, Is.EqualTo(4));
             Assert.That(chixFajita.Ingredients.Count, Is.EqualTo(14));
             Assert.That(chixFajita.Ingredients[0].Name, Is.EqualTo("oil"));
-            Assert.That(chixFajita.Procedure.Count, Is.EqualTo(7));
+            Assert.That(chixFajita.Procedure.Procedures.Count, Is.EqualTo(7));
             Assert.That(chixFajita.CookInstances.Count, Is.EqualTo(1));
             Assert.That(chixFajita.Description, Is.EqualTo(""));
 
@@ -89,7 +89,7 @@ namespace Tests
             Assert.That(xacuti.Serves, Is.EqualTo(4));
             Assert.That(xacuti.Ingredients.Count, Is.EqualTo(16));
             Assert.That(xacuti.Ingredients[0].Name, Is.EqualTo("vegetable oil"));
-            Assert.That(xacuti.Procedure.Count, Is.EqualTo(3));
+            Assert.That(xacuti.Procedure.Procedures.Count, Is.EqualTo(3));
             Assert.That(xacuti.CookInstances.Count, Is.EqualTo(0));
             Assert.That(xacuti.Description, Is.EqualTo(
                 "Pronounced 'shakooti', this Portuguese-inspired curry is also called 'sagoti', " +
@@ -100,7 +100,7 @@ namespace Tests
             Assert.That(couscous.Serves, Is.EqualTo(4));
             Assert.That(couscous.Ingredients.Count, Is.EqualTo(13));
             Assert.That(couscous.Ingredients[0].Name, Is.EqualTo("Potatoes"));
-            Assert.That(couscous.Procedure.Count, Is.EqualTo(5));
+            Assert.That(couscous.Procedure.Procedures.Count, Is.EqualTo(5));
             Assert.That(couscous.CookInstances.Count, Is.EqualTo(1));
             Assert.That(couscous.Description, Is.EqualTo(""));
         }

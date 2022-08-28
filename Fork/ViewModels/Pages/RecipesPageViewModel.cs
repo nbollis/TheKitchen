@@ -16,9 +16,9 @@ namespace Fork
     {
     #region Private Properties
 
-        private ObservableCollection<RecipeViewModel> _Recipes;
-        private RecipeListViewModel _RecipeListViewModel;
-        private RecipeViewModel _RecipeViewModel;
+        private ObservableCollection<RecipeViewModel> recipes;
+        private RecipeListViewModel recipeListViewModel;
+        private RecipeViewModel recipeViewModel;
 
     #endregion
 
@@ -26,30 +26,30 @@ namespace Fork
 
         public ObservableCollection<RecipeViewModel> Recipes
         {
-            get { return _Recipes; }
+            get { return recipes; }
             set
             {
-                _Recipes = value;
+                recipes = value;
                 OnPropertyChanged(nameof(Recipes));
             }
         }
 
         public RecipeListViewModel RecipeListViewModel
         {
-            get { return _RecipeListViewModel; }
+            get { return recipeListViewModel; }
             set
             {
-                _RecipeListViewModel = value;
+                recipeListViewModel = value;
                 OnPropertyChanged(nameof(RecipeListViewModel));
             }
         }
 
         public RecipeViewModel RecipeViewModel
         {
-            get { return _RecipeViewModel; }
+            get { return recipeViewModel; }
             set
             {
-                _RecipeViewModel = value;
+                recipeViewModel = value;
                 OnPropertyChanged(nameof(RecipeViewModel));
             }
         }
@@ -76,8 +76,9 @@ namespace Fork
         public RecipesPageViewModel()
         {
             // Initialize Fields
-            _Recipes = ViewModelApplication.AllRecipeViewModels;
-            _RecipeListViewModel = new RecipeListViewModel(_Recipes);
+            recipes = ForkGlobalData.AllRecipes.ToViewModels();
+            recipeListViewModel = new RecipeListViewModel(recipes);
+            recipeViewModel = recipes.First();
 
             // Declare Commands
             BackCommand = new RelayCommand(() => GoBack());

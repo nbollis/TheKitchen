@@ -59,7 +59,7 @@ namespace ForkDataHandling
                 
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 recipe = null;
                 return false;
@@ -116,7 +116,7 @@ namespace ForkDataHandling
 
             for (int i = procedureIndex + 1; i < cookedIndex; i++)
             {
-                recipe.Procedure.Add(lines[i]);
+               // recipe.Procedure.Add(lines[i]);
             }
 
             for (int i = cookedIndex + 1; i < lines.Count; i++)
